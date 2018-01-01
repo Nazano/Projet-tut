@@ -1,0 +1,8 @@
+.red{
+  background-color: red;
+}
+
+.ma{
+  background-clip: padding-box;
+  border: 5px solid transparent;
+}
