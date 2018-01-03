@@ -6,7 +6,12 @@
   </head>
   <body>
     Veuillez remplir les champs ci-dessous pour créer votre compte. </br>
-    <span style="color:red"> <?php require_once("user.php"); session_start(); if (isset($_SESSION["form"]) and $_SESSION["form"] == false) echo "Veuillez remplir tous les champs."; $_SESSION["form"] = true; ?> </span> </br>
+    <span style="color:red">
+       <?php require_once("user.php"); session_start();
+       if (isset($_SESSION["form"]) and $_SESSION["form"] == false)
+       echo "Veuillez remplir tous les champs.";
+       $_SESSION["form"] = true; ?>
+    </span> </br>
 
     <form action="account.php" method="post">
     <input type="text" name="prénom" placeholder="Prénom" value = <?php if(isset($_SESSION["parent"])) echo $_SESSION["parent"]->prenom ; else echo ""; ?>>
