@@ -1,0 +1,46 @@
+/* Affichage des parents */
+DELIMITER | CREATE OR REPLACE PROCEDURE display_Parents()
+BEGIN
+	SELECT nom, prenom, mail, telephone, libelleStatut
+	FROM Parent NATURAL JOIN Statut;
+END |
+
+/* Affichage des enfants */
+DELIMITER | CREATE OR REPLACE PROCEDURE display_Enfants()
+BEGIN
+	SELECT nom, prenom, dateNaissance, Categorie
+	FROM Enfant NATURAL JOIN (Compte, CatégorieEnfant);
+END |
+
+/* Affichage du solde des enfants */
+DELIMITER | CREATE OR REPLACE PROCEDURE display_SoldeEnfants()
+BEGIN
+	SELECT * 
+	FROM V_Enfant;
+END |
+
+/* Affichage stock */
+DELIMITER | CREATE OR REPLACE PROCEDURE display_SoldeEnfants()
+BEGIN
+	SELECT * 
+	FROM V_Produit;
+END |
+
+/*Affichage Course du jour */
+DELIMITER | CREATE OR REPLACE PROCEDURE display_Courses(date DATE)
+BEGIN 
+	SELECT libelle, qteAchete, prix
+	FROM ACHAT NATURAL JOIN Produit
+	WHERE dateAchat = date;
+END |
+
+/* Obtenir montant achat */
+DELIMITER | CREATE OR REPLACE FUNCTION montantAchat(date DATE)
+RETURNS INT
+BEGIN
+	DECLARE montantAchat INT;	
+	SELECT SUM(prix) INTO montantAchat
+	FROM Achat
+	WHERE dateAchat = date;
+	RETURN montantAchat;
+END |

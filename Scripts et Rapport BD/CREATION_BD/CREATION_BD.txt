@@ -1,0 +1,162 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+#------------------------------------------------------------
+# Table: Produit
+#------------------------------------------------------------
+
+CREATE TABLE Produit(
+        idProduit Int NOT NULL AUTO_INCREMENT,
+        prix      Float ,
+        stock     Float ,
+	libelle   Varchar(30),
+        PRIMARY KEY (idProduit )
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: Compte
+#------------------------------------------------------------
+
+CREATE TABLE Compte(
+        idCompte Int NOT NULL AUTO_INCREMENT,
+        solde    Float ,
+        PRIMARY KEY (idCompte )
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: CatégorieEnfant
+#------------------------------------------------------------
+
+CREATE TABLE CategorieEnfant(
+        idCategorie Int NOT NULL AUTO_INCREMENT,
+        libelleCat  Varchar(15),
+        PRIMARY KEY (idCategorie )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Statut
+#------------------------------------------------------------
+
+CREATE TABLE Statut(
+        idStatut      Int NOT NULL AUTO_INCREMENT,
+        libelleStatut Varchar(20),
+        PRIMARY KEY (idStatut )
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: Parent
+#------------------------------------------------------------
+
+CREATE TABLE Parent(
+        idParent  Int NOT NULL AUTO_INCREMENT,
+        nom        Varchar(20),
+        prenom     Varchar(20),
+        mail       Varchar(30),
+        telephone  Varchar(20),
+	id	   Varchar(20),
+	psswd      Varchar(20),
+        idStatut   Int ,
+        PRIMARY KEY (idParent ),
+	CONSTRAINT FK_Parent_idStatut FOREIGN KEY (idStatut) REFERENCES Statut(idStatut) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Enfant
+#------------------------------------------------------------
+
+CREATE TABLE Enfant(
+        idEnfant      Int NOT NULL AUTO_INCREMENT,
+        nom           Varchar(20),
+        prenom        Varchar(20) ,
+        dateNaissance Date ,
+        idCategorie   Int ,
+        idCompte      Int ,
+        PRIMARY KEY (idEnfant ),
+	CONSTRAINT FK_Enfant_idCategorie FOREIGN KEY (idCategorie) REFERENCES CategorieEnfant(idCategorie) ON DELETE CASCADE,
+	CONSTRAINT FK_Enfant_idCompte FOREIGN KEY (idCompte) REFERENCES Compte(idCompte) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Consommation
+#------------------------------------------------------------
+
+CREATE TABLE Consommation(
+        idConso   Int NOT NULL AUTO_INCREMENT,
+        qteConso  Float ,
+        dateConso Date ,
+        idEnfant  Int ,
+        idProduit Int ,
+        PRIMARY KEY (idConso ),
+	CONSTRAINT FK_Consommation_idEnfant FOREIGN KEY (idEnfant) REFERENCES Enfant(idEnfant) ON DELETE CASCADE,
+	CONSTRAINT FK_Consommation_idProduit FOREIGN KEY (idProduit) REFERENCES Produit(idProduit) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Achat
+#------------------------------------------------------------
+
+CREATE TABLE Achat(
+        idAchat   Int NOT NULL AUTO_INCREMENT,
+        qteAchete Int ,
+        dateAchat Date ,
+        prix      Float ,
+        idParent  Int ,
+        idProduit Int ,
+        PRIMARY KEY (idAchat ),
+	CONSTRAINT FK_Achat_idParent FOREIGN KEY (idParent) REFERENCES Parent(idParent) ON DELETE CASCADE,
+	CONSTRAINT FK_Achat_idProduit FOREIGN KEY (idProduit) REFERENCES Produit(idProduit) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: est l'enfant de
+#------------------------------------------------------------
+
+CREATE TABLE est_l_enfant_de(
+        idParent Int NOT NULL ,
+        idEnfant Int NOT NULL ,
+        PRIMARY KEY (idParent ,idEnfant ),
+	CONSTRAINT FK_est_l_enfant_de_idParent FOREIGN KEY (idParent) REFERENCES Parent(idParent) ON DELETE CASCADE,
+	CONSTRAINT FK_est_l_enfant_de_idEnfant FOREIGN KEY (idEnfant) REFERENCES Enfant(idEnfant) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: est compose de
+#------------------------------------------------------------
+
+CREATE TABLE est_compose_de(
+        idProduit   Int NOT NULL ,
+        idProduit_1 Int NOT NULL ,
+	qte Int NOT NULL,
+        PRIMARY KEY (idProduit ,idProduit_1),
+	CONSTRAINT FK_est_compose_de_idProduit FOREIGN KEY (idProduit) REFERENCES Produit(idProduit) ON DELETE CASCADE,
+	CONSTRAINT FK_est_compose_de_idProduit_1 FOREIGN KEY (idProduit_1) REFERENCES Produit(idProduit) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: rupture de stock
+#------------------------------------------------------------
+
+CREATE TABLE rupture_de_stock(
+        idProduit   Int NOT NULL ,
+	qte Int NOT NULL,
+        PRIMARY KEY (idProduit),
+	CONSTRAINT FK_rupture_de_solde_idProduit FOREIGN KEY (idProduit) REFERENCES Produit(idProduit) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: rupture de solde
+#------------------------------------------------------------
+
+CREATE TABLE rupture_de_solde(
+        idCompte Int NOT NULL ,
+	solde Int NOT NULL,
+        PRIMARY KEY (idCompte),
+	CONSTRAINT FK_rupture_de_solde_idCompte FOREIGN KEY (idCompte) REFERENCES Compte(idCompte) ON DELETE CASCADE
+)ENGINE=InnoDB;

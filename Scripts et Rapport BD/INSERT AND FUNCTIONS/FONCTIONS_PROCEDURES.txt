@@ -1,0 +1,339 @@
+DELIMITER | CREATE OR REPLACE PROCEDURE ajouter_Produit(prixP FLOAT, stockP FLOAT, libelleP VARCHAR(30))
+BEGIN
+	INSERT INTO Produit (prix,stock,libelle) VALUES (prixP,stockP,libelleP);
+END|
+
+DELIMITER | CREATE OR REPLACE PROCEDURE modifier_Produit(idP INT, prixP FLOAT, stockP FLOAT, libelleP VARCHAR(30))
+BEGIN
+    UPDATE Produit
+    SET prix = prixP, stock = StockP, libelle = libelleP
+    WHERE idProduit = idP ;
+END|
+ 
+DELIMITER | CREATE OR REPLACE  PROCEDURE supprimer_Produit(idP INT)
+BEGIN
+    DELETE FROM Produit
+    WHERE idProduit = idP ;
+END |
+
+ 
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_compte(nomE VARCHAR(20), prenomE VARCHAR(20), dateNaissanceE DATE)
+BEGIN
+    DECLARE idCat, idCompteE INT;
+    INSERT INTO Compte(solde) VALUES(0) ;
+    SET idCat = calculer_Categorie(dateNaissanceE) ;
+    INSERT INTO Enfant( nom, prenom, dateNaissance, idCategorie, idCompte) VALUES( nomE, prenomE, dateNaissanceE, idCat, LAST_INSERT_ID());
+END|
+ 
+ 
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Enfant(nomE VARCHAR(20), prenomE VARCHAR(20), dateNaissanceE DATE, idCompteE INT)
+BEGIN
+    DECLARE idCat INT;
+    SET idCat = calculer_Categorie(dateNaissanceE);
+    INSERT INTO ENFANT VALUES(NULL, nomE, prenomE, dateNaissanceE, idCat, idCompteE);
+END |
+ 
+ 
+DELIMITER | CREATE OR REPLACE PROCEDURE supprimer_Compte_Enfant(idE INT)
+BEGIN
+    DECLARE nbEnfants INT;
+    DECLARE idCompteE INT;
+    SELECT idCompte into idCompteE
+    from Enfant
+    where idEnfant=idE;
+    
+    SET nbEnfants = count_IDCompte(idCompteE);
+    IF(nbEnfants > 1) THEN
+        DELETE FROM Enfant
+        WHERE idEnfant = idE ;
+    ELSE
+        DELETE FROM Enfant
+        WHERE idEnfant = idE ;
+    END IF ;
+END|
+ 
+DELIMITER | CREATE OR REPLACE FUNCTION count_IDCompte(idCompteE INT) RETURNS INT
+BEGIN
+    DECLARE nbID INT;
+    SELECT COUNT(*) INTO nbID
+    FROM Compte
+    WHERE idCompte = idCompteE ;
+    RETURN nbID ;
+END|
+ 
+ 
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Parent(nomP VARCHAR(20), prenomP VARCHAR(20), mailP VARCHAR(50), telephoneP VARCHAR(10), idStatutP INT, idP INT, psswdP VARCHAR(20))
+BEGIN
+    INSERT INTO Parent( nom, prenom, mail, telephone, idStatut, id, psswd ) VALUES( nomP, prenomP, mailP, telephoneP, idStatutP, idP, psswdP);
+END|
+
+DELIMITER | CREATE OR REPLACE FUNCTION calculer_Categorie(dateNaissance DATE) RETURNS INT
+BEGIN
+        DECLARE idC INT ;
+        DECLARE CURDATE DATE;
+        SET CURDATE = CURRENT_DATE();
+        IF(YEAR(CURDATE) - YEAR(dateNaissance) <= 8) THEN
+            SET idc = 1 ;
+        ELSEIF(YEAR(CURDATE) - YEAR(dateNaissance) <= 10) THEN
+             SET idc = 2 ;
+        ELSEIF(YEAR(CURDATE) - YEAR(dateNaissance) <= 12) THEN
+            SET idc = 3 ;
+        ELSEIF(YEAR(CURDATE) - YEAR(dateNaissance) <= 14) THEN
+            SET idc = 4 ;
+        ELSEIF(YEAR(CURDATE) - YEAR(dateNaissance) <= 16) THEN
+            SET idc = 5 ;
+        ELSEIF(YEAR(CURDATE) - YEAR(dateNaissance) <= 18) THEN
+            SET idc = 6 ;
+        ELSEIF(YEAR(CURDATE) - YEAR(dateNaissance) <= 20) THEN
+            SET idc = 7 ;
+        END IF;
+    RETURN idc;
+END |
+ 
+DELIMITER | CREATE OR REPLACE PROCEDURE supprimer_Compte_Parent(idP INT)
+BEGIN
+    DECLARE nbParents INT;
+    SET nbParents = calculer_NbParents(idP);
+    IF(nbParents = 1) THEN
+        DELETE FROM Parent
+        WHERE idParent = idP ;
+    ELSE
+        DELETE FROM Parent
+        WHERE idParent = idP;
+    END IF;
+END|
+ 
+DELIMITER | CREATE OR REPLACE FUNCTION calculer_NbParents(idP INT) RETURNS INT
+BEGIN
+    DECLARE nbParents, idCompteEnfant INT;
+   
+    SELECT idEnfant INTO idCompteEnfant
+    FROM est_l_enfant_de
+    WHERE idParent = idP ;
+   
+    SELECT COUNT(*) INTO nbParents
+    FROM est_l_enfant_de
+    WHERE idEnfant = idCompteEnfant ;
+    RETURN nParents ;
+END|
+ 
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_Course(libelleP VARCHAR(30), quantite INT, dateA DATE, prixA FLOAT, idPa INT)
+BEGIN
+    DECLARE produitExistant INT;
+    DECLARE idProd INT;
+    DECLARE prixU Float;
+    DECLARE qteNew float;
+    DECLARE qteOld float;
+        /* Check si le produit est dÈj‡ dans la BD */
+    SELECT COUNT(*) INTO produitExistant
+    FROM Produit
+    WHERE libelle = libelleP;
+   
+    IF (produitExistant = 1) THEN
+        /*Recuperer l'ID du produit */
+        SELECT idProduit INTO idProd
+        FROM Produit
+        WHERE libelle = libelleP;
+        /* INSERT dans la table Achat */
+        INSERT INTO Achat(qteAchete, dateAchat,prix,idParent,idProduit) VALUES(quantite,dateA,prixA,idPa,idProd);
+        /* hausse du stock*/
+        /*SELECT stock into qteOld
+        from produit
+        where idProduit = idProd;
+
+        SELECT prix into prixU
+        from produit
+        where idProduit = idProd;
+
+        SET qteNew = qteOld+quantite;
+        modifier_Produit(idp,prixU,qteNew,libelleP);*/
+
+    ELSE
+        SET prixU = prixA/quantite;
+        INSERT INTO Produit(Prix, Stock, libelle) VALUES(prixU, quantite, libelleP);
+        SET idProd = LAST_INSERT_ID();
+        INSERT INTO Achat(qteAchete, dateAchat, prix, idParent, idProduit) VALUES( quantite, dateA, prixA, idPa, idProd);
+    END IF;
+END |
+
+DELIMITER | CREATE OR REPLACE PROCEDURE ajouter_solde(idCompte2 INT, soldeToAdd FLOAT)
+BEGIN 
+    DECLARE oldSolde FLOAT;
+    SELECT solde into oldSolde
+    from Compte
+    where idCompte = idCompte2;
+    Set oldSolde = oldSolde + soldeToAdd;
+
+    UPDATE compte set solde = oldSolde where idCompte = idCompte2;
+
+END|
+
+DELIMITER | CREATE OR REPLACE PROCEDURE ajouter_consommation(
+    IN nomProduit VARCHAR(10),
+    IN idEnfant2 Int,
+    IN qte Float)
+
+BEGIN
+    DECLARE idProduitTo INT;
+    DECLARE qteProduit Float;
+    DECLARE diff Float;
+    DECLARE diffSolde Float;
+    DECLARE prixAPayer Float;
+    DECLARE idCompteEnfant INT;
+    DECLARE soldeRestant Float;
+
+    /*on stock l'id du produit correspondant au texte donné*/
+    SELECT idProduit INTO idProduitTo
+    FROM produit p
+    WHERE p.libelle = nomProduit ;
+
+    /* on stock la qte de produit disponible*/
+    SELECT stock INTO qteProduit
+    FROM produit p
+    WHERE p.idProduit = idProduitTo ;
+
+    /* On trouve l'id du compte associé à l'enfant*/
+        SELECT idCompte into idCompteEnfant
+        FROM enfant
+        WHERE idEnfant = idEnfant2;
+
+    /* On trouve le solde restant de l'enfant*/
+        SELECT solde into soldeRestant
+        FROM compte
+        WHERE idCompte = idCompteEnfant;
+
+    /* On trouve le prix pour une quantité de 1*/
+    SELECT prix into prixAPayer
+        FROM produit
+        WHERE idProduit = idProduitTo;
+
+    SET
+        prixAPayer = qte*prixAPayer ;
+    SET
+        diff = qteProduit - qte ;
+    SET
+        diffSolde = soldeRestant - prixAPayer ;
+    
+    IF diff >= 0 && diffSolde >= 0 THEN
+        /* ajout de la ligne dans la table consommation */
+        INSERT INTO consommation(dateConso,idEnfant,idProduit,qteConso )
+        VALUES(CURRENT_DATE(),idEnfant2,idProduitTo,qte );
+
+        /*décompte du solde du compte de l'enfant*/
+        UPDATE Compte Set Solde = soldeRestant - prixAPayer where idCompte=idCompteEnfant;
+
+        /*décompte de la quantite du produit*/
+        UPDATE Produit Set stock = qteProduit-qte where idProduit=idProduitTo;
+    ELSEIF diff <0 THEN 
+        SELECT 'Il n y a pas assez de ce produit pour en consommer autant' ;
+    ELSEIF diffSolde <0 THEN
+        SELECT  'Pas assez d argent sur le compte';
+    ELSE 
+        SELECT 'Erreur lors de l execution de la procedure';
+    END IF ;
+END|
+
+DELIMITER | CREATE OR REPLACE PROCEDURE suppression_conso(IN idConso2 INT)
+
+BEGIN
+    DECLARE idEnfant2 INT;
+    DECLARE idProduit2 INT;
+    DECLARE prixARembourser Float;
+    DECLARE idCompteEnfant INT;
+    DECLARE soldeRestant Float;
+    DECLARE qteConso2 INT;
+    
+
+    /*on stock l'id du produit consommé*/
+    SELECT idProduit into idProduit2
+    FROM consommation
+    WHERE idConso = idConso2;
+
+    /*On stock la qte consommée*/
+    SELECT qteConso into qteConso2
+    FROM consommation
+    WHERE idConso = idConso2;
+
+    /*On stock l'id de l'enfant concerné*/
+    SELECT idEnfant into idEnfant2
+    FROM consommation
+    WHERE idConso = idConso2;
+
+    /* On trouve l'id du compte associé à l'enfant*/
+    SELECT idCompte into idCompteEnfant
+    FROM enfant
+    WHERE idEnfant = idEnfant2;
+
+    /* On trouve le solde restant de l'enfant*/
+    SELECT solde into soldeRestant
+    FROM compte
+    WHERE idCompte = idCompteEnfant;
+
+    /* On trouve le prix pour une quantité de 1*/
+    SELECT prix into prixARembourser
+    FROM produit
+    WHERE idProduit = idProduit2;
+
+    
+
+    SET
+        prixARembourser = qteConso2 * prixARembourser;
+    
+
+    /* suppression de la ligne dans la table consommation */
+    DELETE FROM consommation where idConso = idConso2;
+
+    /*acompte du solde du compte de l'enfant*/
+    UPDATE Compte Set Solde = soldeRestant + prixARembourser where idCompte=idCompteEnfant;
+
+    /*décompte de la quantite du produit*/
+    UPDATE Produit Set stock = qteConso2+qteConso2 where idProduit=idProduit2;
+END|
+
+
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_Course(libelleP VARCHAR(30), quantite INT, dateP DATE, prixA FLOAT) 
+BEGIN
+	DECLARE produitExistant INT;
+	DECLARE idProd INT;
+	DECLARE prixU INT;
+	/* Check si le produit est déjà dans la BD */
+	SELECT COUNT(*) INTO produitExistant
+	FROM Produit
+	WHERE libelle = libelleP;
+
+	/* S'il l'est déjà */
+	IF (produitExistant = 1) THEN
+		/*Recupérer l'ID du produit */
+		SELECT idProduit INTO idProd
+        FROM Produit
+		WHERE libelle = libelleP;
+		/* INSERT dans la table Achat */
+		INSERT INTO Achat (qteAchete,dateAchat,prix,idParent,idProduit) VALUES (quantite,dateP,prixA,idP,idProd);
+        /*Sinon ... */
+	ELSE
+		SET prixU = prixA/quantite;
+		INSERT INTO Produit (Prix,Stock,libellé) VALUES (prixU,quantite,libelleP);
+		SET idProd = LAST_INSERT_ID();
+		INSERT INTO Achat (qteAchete,dateAchat,prix,idParent,idProduit) VALUES (quantite,dateP,prixA,idP,idProd);
+	END IF;
+END|
+
+
+DELIMITER | CREATE OR REPLACE PROCEDURE reset_BD()
+BEGIN
+    /* REMETTRE LE SOLDE DES ENFANTS A 0 */
+    UPDATE compte
+    SET solde = 0;
+    
+    /* REMETTRE A 0 LES CONSOMMATIONS ET LES ACHATS */
+    DELETE FROM achat;
+    DELETE FROM consommation;
+    
+    /* REMETTRE LES ENFANTS DANS LA BONNE CATEGORIE */
+    UPDATE enfant
+    SET idCategorie = calculer_Categorie(dateNaissance);
+END|
+
+
+
+

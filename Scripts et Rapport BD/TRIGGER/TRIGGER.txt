@@ -1,0 +1,28 @@
+#------------------------------------------------------------
+# Trigger: proche_ruptureDeStock
+#------------------------------------------------------------
+# Créé un TRIGGER qui insère dans la table rupture_de_stock le produit proche de la rupture de stock.
+
+Delimiter | CREATE TRIGGER proche_ruptureDeStock AFTER UPDATE 
+ON Produit 
+FOR EACH ROW
+BEGIN
+	IF NEW.stock < 5 Then 
+		INSERT INTO rupture_de_stock VALUES (NEW.idProduit,NEW.Stock);
+	END IF;
+END|	
+
+
+#------------------------------------------------------------
+# Trigger: solde_presqueVide
+#------------------------------------------------------------
+# Créé un TRIGGER qui insère dans la table rupture_de_solde le compte d'un enfant dont le solde est presque nul.
+
+Delimiter | CREATE TRIGGER solde_presqueVide AFTER UPDATE
+ON Compte
+FOR EACH ROW
+BEGIN 
+	IF NEW.solde < 5.00 Then
+		INSERT INTO rupture_de_solde VALUES (NEW.idCompte,NEW.solde);
+	END IF;
+END|

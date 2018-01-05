@@ -1,0 +1,14 @@
+####### VUE ENFANT #######
+
+CREATE OR REPLACE VIEW V_Enfant
+AS
+SELECT prenom, nom, solde
+FROM Enfant, Compte
+WHERE Enfant.idCompte = Compte.idCompte;
+
+####### VUE PRODUITS #######
+
+CREATE OR REPLACE VIEW V_Produit
+AS 
+SELECT libelle, stock, prix
+FROM Produit;
