@@ -24,7 +24,7 @@ INSERT INTO CategorieEnfant(libelleCat) VALUES('-20 ans');
 
 ######################### INSERTIONS DANS LA TABLE COMPTE #########################
 
-INSERT INTO Compte(solde) VALUES (4,30);
+INSERT INTO Compte(solde) VALUES (4.30);
 INSERT INTO Compte(solde) VALUES (14.60);
 INSERT INTO Compte(solde) VALUES (22.50);
 INSERT INTO Compte(solde) VALUES (3.70);
@@ -151,4 +151,4 @@ INSERT INTO Consommation(qteConso,dateConso,idEnfant,idProduit) VALUES (3,'2017/
 
 INSERT INTO Achat(qteAchete,dateAchat,prix,idParent,idProduit) VALUES (3, '2017/09/09', 2.10, 5, 1); 
 
-INSERT INTO Achat(qteAchete,dateAchat,prix,idParent,idProduit) VALUES (5, '2017/09/16', 15.50, 42, 2); 
+INSERT INTO Achat(qteAchete,dateAchat,prix,idParent,idProduit) VALUES (5, '2017/09/16', 28.00, 8, 2); 

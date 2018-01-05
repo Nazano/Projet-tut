@@ -156,7 +156,7 @@ CREATE TABLE rupture_de_stock(
 
 CREATE TABLE rupture_de_solde(
         idCompte Int NOT NULL ,
-	solde Int NOT NULL,
+	solde Float NOT NULL,
         PRIMARY KEY (idCompte),
 	CONSTRAINT FK_rupture_de_solde_idCompte FOREIGN KEY (idCompte) REFERENCES Compte(idCompte) ON DELETE CASCADE
 )ENGINE=InnoDB;
