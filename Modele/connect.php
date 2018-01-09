@@ -1,3 +1,3 @@
 <?php
-	$co = mysqli_connect("localhost","root","","projet_tut") or die("Erreur de connexion");
+	$co = mysqli_connect("localhost","root","","APERO") or die("Erreur de connexion");
 ?>

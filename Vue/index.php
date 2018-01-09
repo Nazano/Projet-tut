@@ -1,8 +1,9 @@
+<?php require_once('../Controleur/afficher_menu.php') ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Enfants</title>
+    <title>Index</title>
     <!-- css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -24,31 +25,15 @@
       </div>
     </div>
     <div class="container">
-      <h3>Nom prénom</h3>
+      <h3>Prénom Nom</h3>
     </div>
-    <!-- fin header -->
-    <div class="container">
-      <div class="jumbotron">
-        <h1 class="display-3">Enfants</h1>
-        <p>Consulter la liste des enfants</p>
+    <!-- Fin du header -->
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <?php afficher_menus() ?>
+        </div>
       </div>
-    </div>
-    <div class="container">
-      <table class="table">
-        <thead>
-            <tr>
-              <th scope="nom">Nom</th>
-              <th scope="prenom">Prénom</th>
-              <th scope="dateNaiss">Naissance</th>
-              <th scope="solde">Son solde</th>
-              <th scope="modifier">Modifier</th>
-              <th scope="supprimer">Supprimer</th>
-            </tr>
-        </thead>
-        <tbody>
-          <!-- Contenu du tableau -->
-        </tbody>
-      </table>
     </div>
   </body>
 </html>
