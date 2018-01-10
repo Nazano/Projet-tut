@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -25,10 +26,11 @@
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <div class="jumbotron">
-            <form class="form-signin" method="POST">
               <h2 class="display-4 text-center">Se connecter</h2><br>
-              <input type="text" class="form-control" name="username" placeholder="Identifiant" required="" autofocus="" />
-              <input type="password" class="form-control" name="password" placeholder="Mot de passe" required="" />
+              <?php if(isset($_SESSION["msg_conn"])) printf($_SESSION["msg_conn"]); ?>
+              <form class="form-signin" method="POST" action="../Controleur/controleur_connexion.php">
+              <input type="text" class="form-control" name="login" placeholder="Identifiant" required="" autofocus="" />
+              <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" required="" />
               <label class="checkbox">
               <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Se souvenir de moi
               </label>

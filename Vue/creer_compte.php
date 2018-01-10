@@ -29,7 +29,7 @@
           <p>Veuillez remplir les champs ci-dessous pour créer votre compte</p>
           <?php if(isset($_SESSION['msg'])) printf($_SESSION['msg']);?>
           <!-- Formualire -->
-          <form class="" action="../Modele/create_account.php" method="post">
+          <form class="" action="../Controleur/controleur_creer_compte.php" method="post">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Prénom</span>

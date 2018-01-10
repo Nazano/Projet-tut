@@ -1,3 +1,4 @@
+<?php require_once('../Controleur/controleur_stock.php') ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -37,7 +38,6 @@
       <table class="table">
         <thead class="thead-dark">
             <tr>
-              <th scope="id">#</th>
               <th scope="libelle">Libelle</th>
               <th scope="prix">Prix</th>
               <th scope="quantite">Quantite</th>
@@ -46,7 +46,7 @@
             </tr>
         </thead>
         <tbody>
-
+          <?php display_stock() ?>
         </tbody>
         <button type="button" class="btn btn-default btn">
            Ajouter un produit

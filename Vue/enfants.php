@@ -1,3 +1,4 @@
+<?php require_once('../Controleur/controleur_enfants.php'); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -46,7 +47,7 @@
             </tr>
         </thead>
         <tbody>
-          <!-- Contenu du tableau -->
+          <?php display_Enfants(); ?>
         </tbody>
       </table>
     </div>

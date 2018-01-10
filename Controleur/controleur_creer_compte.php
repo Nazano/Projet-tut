@@ -1,13 +1,12 @@
 <?php
-  require_once("../Controleur/connect.php");
-  //require_once("user.php");
-  session_start();
+require_once("../Modele/modele_creer_compte.php");
+//require_once("user.php");
+session_start();
 
 if(isset($_POST["prenom"]) and isset($_POST["nom"]) and isset($_POST["username"]) and isset($_POST["email"]) and isset($_POST["check_email"]) and isset($_POST["tel"]) and isset($_POST["pwd"]) and isset($_POST["check_pwd"]) and isset($_POST["conditions"])) {
 
         //Vérification de l'indentifiant
-        $query = sprintf("SELECT id FROM Parent WHERE id = '%s'", $_POST["username"]);
-        $result = mysqli_query($co,$query);
+        $result = selectID($_POST["username"]);
         if (mysqli_num_rows($result) >= 1) {
           $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Identifiant déja existant</div>";
           header('Location:../Vue/creer_compte.php');
@@ -33,8 +32,7 @@ if(isset($_POST["prenom"]) and isset($_POST["nom"]) and isset($_POST["username"]
 
         //Si tout bon insertion dans la BD
         else {
-          $query2 = sprintf("INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ('%s','%s','%s','%s','%s','%s',3)", $_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["tel"], $_POST["username"], $_POST["pwd"]);
-          if ($result = mysqli_query($co,$query2))
+          if ($result = insertParent($_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["tel"], $_POST["username"], $_POST["pwd"]))
             header("Location:../index.html");
           else
             echo "Error : " . mysqli_error ($co);

@@ -1,4 +1,4 @@
-<?php require_once('../Controleur/afficher_menu.php') ?>
+<?php require_once('../Controleur/controleur_menu.php') ?>
 <!DOCTYPE html>
 <html>
   <head>
