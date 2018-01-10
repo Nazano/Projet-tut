@@ -1,149 +1,77 @@
 <?php
-class User
-{
-<<<<<<< HEAD
-  var $nom;
-  var $prenom;
-  var $username;
-  var $mail;
-  var $check_mail;
-  var $tel;
-  var $pwd;
-  var $check_pwd;
-  var $co;
-  function __construct()
-  {
-    if(func_num_args() == 9) {
-      $list_arg = func_get_args();
-      $this->nom = $list_arg[0];
-      $this->prenom = $list_arg[1];
-      $this->username = $list_arg[2];
-      $this->mail = $list_arg[3];
-      $this->check_mail = $list_arg[4];
-      $this->tel = $list_arg[5];
-      $this->pwd = $list_arg[6];
-      $this->check_pwd = $list_arg[7];
-      $this->co = $list_arg[8];
-    }
-    else if(func_num_args() == 3) {
-      $list_arg = func_get_args();
-      $this->username = $list_arg[0];
-      $this->pwd = $list_arg[1];
-      $this->check_pwd = $this->pwd = $list_arg[1];
-      $this->co = $list_arg[2];
-      $this->nom = mysqli_fetch_array(mysqli_query($this->co,"SELECT nom FROM Parent WHERE id = '$this->username'"));
-      $this->prenom = mysqli_fetch_array(mysqli_query($this->co,"SELECT prenom FROM Parent WHERE id = '$this->username'"));
-      $this->mail = mysqli_fetch_array(mysqli_query($this->co,"SELECT mail FROM Parent WHERE id = '$this->username'"));
-      $this->check_mail = mysqli_fetch_array(mysqli_query($this->co,"SELECT mail FROM Parent WHERE id = '$this->username'"));
-      $this->tel = mysqli_fetch_array(mysqli_query($this->co,"SELECT telephone FROM Parent WHERE id = '$this->username'"));
-    }
-  }
-=======
-  private $nom;
-  private $prenom;
-  private $username;
-  private $mail;
-  private $check_mail;
-  private $tel;
-  private $pwd;
-  private $check_pwd;
-
-  function __construct($nom, $prenom, $username, $mail, $check_mail, $tel, $pwd, $check_pwd)
-  {
-    $this->nom = $nom;
-    $this->prenom = $prenom;
-    $this->username = $username;
-    $this->mail = $mail;
-    $this->check_mail = $check_mail;
-    $this->tel = $tel;
-    $this->pwd = $pwd;
-    $this->check_pwd = $check_pwd;
-  }
-
-  
-
-    //GETTERS
-
-    /**
-     * Get the value of Nom
-     *
-     * @return mixed
-     */
-    public function getNom()
+    require_once("bd.php");
+    class User
     {
-        return $this->nom;
+    var $id;
+    var $nom;
+    var $prenom;
+    var $username;
+    var $mail;
+    var $tel;
+    var $pwd;
+    var $rank;
+    public function __construct() {
+        $cpt = func_num_args();
+        $args = func_get_args();
+        switch ($cpt) {
+            case 7 : 
+                $this->co = $args[0];
+                $this->nom = $args[1];
+                $this->prenom = $args[2];
+                $this->username = $args[3];
+                $this->pwd = $args[4];
+                $this->mail = $args[5];
+                $this->tel = $args[6];
+                $result= mysqli_query($this->co,"call creer_Compte_Parent( '$this->nom', '$this->prenom', '$this->mail', '$this->tel', 1, '$this->username', '$this->pwd' )") or die ("mdr le call marche pas");
+                $result2 = mysqli_query($this->co,"SELECT * FROM parent WHERE id = '$this->username' AND psswd = '$this->pwd'") or die("Erreur lors de la requete de recherche du membre");
+                while ($row = mysqli_fetch_assoc($result2)) {
+                    $this->id = $row["id"];
+                    $this->rank = $row["rank"];
+                    $this->mail = $row["mail"];
+                }
+                $this->connexion();
+                break;      
+            case 3 :
+                //cradouk, il faudrait utiliser des valeurs intermédiaires avant la requete, et initialiser l'objet membre une fois qu'on est sûr qu'il y a déjà qqun avec cet id+mdp c:
+                $this->co = $args[0];
+                $this->pseudo = $args[1];
+                $this->psswd = $args[2];
+
+                $result = mysqli_query($this->co,"SELECT * FROM parent WHERE id = '$this->username' AND psswd = '$this->pwd'") or die("Erreur lors de la requete de recherche du membre");
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $this->id = $row["id"];
+                    $this->rank = $row["rank"];
+                    $this->mail = $row["mail"];
+                }
+                $this->connexion();
+                break;
+            
+            default:
+                echo "Usage membre constructor : constructor co ,pseudo,psswd & mail or : constructor co,pseudo,psswd";
+                break;
+        }
+    }
+    public function connexion() {
+        session_start();
+        $_SESSION['user']=$this;
+        setcookie("ID",$this->id,time()+86400);
     }
 
-    /**
-     * Get the value of Prenom
-     *
-     * @return mixed
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
+    public function modif_mdp($mdp) {
+        $result = mysqli_querry($this->co,"UPDATE membres set mdpasse=$mdp where id='$this->id'; ") or die("Erreur lors du changement de mdp");
+        $this->psswd = $mdp;
     }
-
-    /**
-     * Get the value of Username
-     *
-     * @return mixed
-     */
-    public function getUsername()
-    {
-        return $this->username;
+    public function getID() {
+        return $this->ID;
     }
-
-    /**
-     * Get the value of Mail
-     *
-     * @return mixed
-     */
-    public function getMail()
-    {
-        return $this->mail;
+    public function getNom() {
+        return $this->Nom;
     }
-
-    /**
-     * Get the value of Check Mail
-     *
-     * @return mixed
-     */
-    public function getCheckMail()
-    {
-        return $this->check_mail;
+    public function getPrenom() {
+        return $this->Prenom;
     }
-
-    /**
-     * Get the value of Tel
-     *
-     * @return mixed
-     */
-    public function getTel()
-    {
-        return $this->tel;
+    public function getRank() {
+        return $this->rank;
     }
-
-    /**
-     * Get the value of Pwd
-     *
-     * @return mixed
-     */
-    public function getPwd()
-    {
-        return $this->pwd;
     }
-
-    /**
-     * Get the value of Check Pwd
-     *
-     * @return mixed
-     */
-    public function getCheckPwd()
-    {
-        return $this->check_pwd;
-    }
-
->>>>>>> f585ac9b12e15ad07155e478ae49c10931e4496e
-}
 ?>
