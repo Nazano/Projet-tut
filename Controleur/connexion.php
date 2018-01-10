@@ -1,23 +1,29 @@
 <?php
-require_once("../Modele/connect.php");
-require_once("../Modele/user.php");
-session_start();
-  if (!empty($_POST["login"]) and !empty($_POST["pwd"])) {
-    $login = $_POST["login"];
-    $pwd = $_POST["pwd"];
-    $_SESSION["login"] = $login;
-    $query = "SELECT id, psswd FROM Parent WHERE id = '$login' and psswd = '$pwd'";
-    $result = mysqli_query($co,$query);
-    if(mysqli_num_rows($result) == 1) {
-     header("Location:../Vue/index.html");
-    }
-    else {
-      $_SESSION["checkConnexion"] = false;
-      header("Location:../Vue/formulaire_connexion.php");
-    }
-  }
-  else {
-    $_SESSION["checkFormulaire"] = false;
-    header("Location:../Vue/formulaire_connexion.php");
-  }
- ?>
+     require_once("../Modele/user.php");
+     if (isset($_POST['pseudo']) && isset($_POST['pass'])) {
+                $pseudo = $_POST['pseudo'];
+                //echo "ok1";
+                $pwd = $_POST['pass'];
+                //echo "ok2";
+                $co = (new bd("projet_tut"))->connexion();
+                //echo "ok3";
+                var_dump($pseudo);
+                var_dump($pwd);
+                $result = mysqli_query($co,"SELECT * FROM parent WHERE id = '$pseudo' AND psswd = '$pwd'") or die ("On trouve pas le membre");
+                $nbLigne= mysqli_num_rows($result);
+                echo "pseudo : " . $pseudo . "mdp : " . $pwd ."nbLigne : " . $nbLigne;
+                
+                var_dump($nbLigne);
+                //echo "ok4";
+                if ($nbLigne==1) {
+                        $m = new user($co,$pseudo,$pwd);
+                        //echo "ok5";
+                        header('Location: ../Vue/index.php');
+                } else {
+                        echo "<br/>" . "Erreur lors de la connexion";
+                }
+                
+     } else {
+         echo "Veuillez remplir tous les champs";
+     }
+?>
