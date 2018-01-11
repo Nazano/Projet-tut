@@ -31,7 +31,8 @@
             </tr>
         </thead>
         <tbody>
-          <?php  ?>
+          <?php  display_Produits(); ?>
+          
         </tbody>
       </table>
     </div>
