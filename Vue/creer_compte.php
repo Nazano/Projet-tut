@@ -72,11 +72,11 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Mot de passe</span>
               </div>
-              <input type="text" class="form-control" name="pwd" required="">
+              <input type="password" class="form-control" name="pwd" required="">
             </div>
 
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Confirmer le mot de passe" name="check_pwd" required="">
+              <input type="password" class="form-control" placeholder="Confirmer le mot de passe" name="check_pwd" required="">
             </div>
 
             <div class="input-group mb-3">
