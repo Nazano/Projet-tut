@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Ptut</title>
+  <title>Créer un compte</title>
   <!-- css -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -88,7 +88,7 @@
             </div>
 
             <input type="submit" name="" value="Créer un compte" class="btn btn-primary">
-            <span>ou <a href="connexion.php">se connecter</a> </span>
+            <span>ou <a href="connexion.php">Se connecter</a> </span>
 
           </form>
 

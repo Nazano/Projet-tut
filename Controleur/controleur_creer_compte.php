@@ -33,12 +33,12 @@ if(isset($_POST["prenom"]) and isset($_POST["nom"]) and isset($_POST["username"]
 
         //Si tout bon insertion dans la BD
         else {
-          $info = new user(clean_input($_POST['nom']),clean_input($_POST['prenom']),clean_input($_POST['pseudo']),clean_input($_POST['pwd']),clean_input($_POST['mail']),clean_input($_POST['tel']));
+          $info = new user(clean_input($_POST['nom']),clean_input($_POST['prenom']),clean_input($_POST['username']),clean_input($_POST['pwd']),clean_input($_POST['email']),clean_input($_POST['tel']));
           $info->connexion();
           $_SESSION['msg'] = "";
           header('Location: ../Vue/index.php');
 
-          
+
         }
   }
   else {
