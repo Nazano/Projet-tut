@@ -1,9 +1,10 @@
 <?php
 require_once("../Modele/modele_connexion.php");
 require_once("../Modele/user.php");
+require_once("../Modele/clean.php");
 session_start();
   if (isset($_POST["login"]) and isset($_POST["pwd"])) {
-    $result = conn_requete($_POST["login"], $_POST["pwd"]);
+    $result = conn_requete(clean_input($_POST["login"]), clean_input($_POST["pwd"]));
     if(mysqli_num_rows($result) >= 1) {
       $_SESSION["msg_conn"] = "";
       $_SESSION["connecte"] = true;

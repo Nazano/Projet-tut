@@ -4,7 +4,7 @@
     session_start();
     $user = new user();
     $user = $_SESSION['user'];
-    $co->close();
+    $user->getCo()->close();
     session_unset();
     session_destroy();
     header('Location: ../Vue/connexion.php');

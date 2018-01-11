@@ -1,6 +1,7 @@
 <?php
 require_once("../Modele/modele_creer_compte.php");
-//require_once("user.php");
+require_once("../Modele/clean.php");
+require_once("../Modele/user.php");
 session_start();
 
 if(isset($_POST["prenom"]) and isset($_POST["nom"]) and isset($_POST["username"]) and isset($_POST["email"]) and isset($_POST["check_email"]) and isset($_POST["tel"]) and isset($_POST["pwd"]) and isset($_POST["check_pwd"]) and isset($_POST["conditions"])) {
@@ -32,13 +33,12 @@ if(isset($_POST["prenom"]) and isset($_POST["nom"]) and isset($_POST["username"]
 
         //Si tout bon insertion dans la BD
         else {
-          if ($result = insertParent($_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["tel"], $_POST["username"], $_POST["pwd"]))
-            header("Location:../index.html");
-          else
-            echo "Error : " . mysqli_error ($co);
-
+          $info = new user(clean_input($_POST['nom']),clean_input($_POST['prenom']),clean_input($_POST['pseudo']),clean_input($_POST['pwd']),clean_input($_POST['mail']),clean_input($_POST['tel']));
+          $info->connexion();
           $_SESSION['msg'] = "";
-          header('Location:../Vue/index.php');
+          header('Location: ../Vue/index.php');
+
+          
         }
   }
   else {

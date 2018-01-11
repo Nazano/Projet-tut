@@ -15,7 +15,7 @@
             $prenom = clean_input($_POST['prenom']);
             $tel = clean_input($_POST['tel']);
             echo "<br/> Création du membre <br/>";
-            $info = new user((new bd("projet_tut"))->connexion(),$nom,$prenom,$pseudo,$pwd,$mail,$tel);
+            $info = new user($nom,$prenom,$pseudo,$pwd,$mail,$tel);
             $info->connexion();
             header('Location: ../Vue/index.php');
         }     
