@@ -34,7 +34,7 @@
           <?php display_Enfants(); ?>
         </tbody>
       </table>
-      <button type="button" name="button">Ajouter un enfant</button>
+      <button type="button" name="button" onclick="location.href='ajout_enfant.php'">Ajouter un enfant</button>
     </div>
   </body>
 </html>

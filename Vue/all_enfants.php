@@ -33,7 +33,8 @@
         <tbody>
           <?php display_All_Enfants(); ?>
         </tbody>
-      </table>
+      </table>      
+      <button type="button" name="button">Ajouter un enfant</button>
     </div>
   </body>
 </html>

@@ -20,6 +20,7 @@ CREATE TABLE Produit(
 
 CREATE TABLE Compte(
         idCompte Int NOT NULL AUTO_INCREMENT,
+	nomCompte Varchar(30),
         solde    Float ,
         PRIMARY KEY (idCompte )
 )ENGINE=InnoDB;

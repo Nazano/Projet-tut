@@ -20,6 +20,7 @@ CREATE TABLE Produit(
 
 CREATE TABLE Compte(
         idCompte Int NOT NULL AUTO_INCREMENT,
+	nomCompte Varchar(30),
         solde    Float ,
         PRIMARY KEY (idCompte )
 )ENGINE=InnoDB;
@@ -241,11 +242,11 @@ BEGIN
 END|
  
  
-DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Enfant(nomE VARCHAR(20), prenomE VARCHAR(20), dateNaissanceE DATE, idCompteE INT)
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Enfant(prenomE VARCHAR(20), nomE VARCHAR(20), dateNaissanceE DATE, idCompteE INT)
 BEGIN
     DECLARE idCat INT;
     SET idCat = calculer_Categorie(dateNaissanceE);
-    INSERT INTO Enfant VALUES(NULL, nomE, prenomE, dateNaissanceE, idCat, idCompteE);
+    INSERT INTO ENFANT(nom, prenom, dateNaissance, idCategorie, idCompte) VALUES(nomE, prenomE, dateNaissanceE, idCat, idCompteE);
 END |
  
  
@@ -622,39 +623,39 @@ INSERT INTO CategorieEnfant(libelleCat) VALUES('-20 ans');
 
 ######################### INSERTIONS DANS LA TABLE COMPTE #########################
 
-INSERT INTO Compte(solde) VALUES (4.30);
-INSERT INTO Compte(solde) VALUES (14.60);
-INSERT INTO Compte(solde) VALUES (22.50);
-INSERT INTO Compte(solde) VALUES (3.70);
-INSERT INTO Compte(solde) VALUES (28.90);
-INSERT INTO Compte(solde) VALUES (20.90);
-INSERT INTO Compte(solde) VALUES (30.70);
-INSERT INTO Compte(solde) VALUES (8.50);
-INSERT INTO Compte(solde) VALUES (21.40);
-INSERT INTO Compte(solde) VALUES (19.40);
-INSERT INTO Compte(solde) VALUES (20.60);
-INSERT INTO Compte(solde) VALUES (2.10);
-INSERT INTO Compte(solde) VALUES (28.0);
-INSERT INTO Compte(solde) VALUES (1.20);
-INSERT INTO Compte(solde) VALUES (0.80);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Phebee',4.30);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Jermaine',14.60);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte des Shepherd',22.50);
+INSERT INTO Compte(nomCompte,solde) VALUES ("Compte d'Urielle",3.70);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte des Justice',28.90);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Rae',20.90);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Dorian',30.70);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Colby',8.50);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Madeson',21.40);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte des Shaq',19.40);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte des Dawson',20.60);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte des Lindsey',2.10);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Malcom',28.0);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Taylor',1.20);
+INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Blaine',0.80);
 
 ######################### INSERTIONS DANS LA TABLE PARENT #########################
 
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Thibault","Cothenet","thibault.cothenet@orange.fr","06 21 60 78 65","tcothen","toto",1);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Antoine","Julien","antoine.julien@gmail.com","06 39 91 14 64","ajulien","tutu",2);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Preston","Shepherd","preston.sheperd@gmail.com","07 59 60 70 27","pshephe","azerty",2);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Ifeoma","Ryan","ifeoma.ryan@gmail.com","07 49 99 87 36","iryan","qwerty",2);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Kelsey","Justice","kelsey.justice@gmail.com","06 97 05 12 30","kjustic","chat123",2);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Deirdre","Tran","deirdre.tran@gmail.com","06 39 67 68 71","dtran","quebec5",3);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Emerson","Bass","emerson.bass@gmail.com","06 63 31 26 41","ebass","montreal9",3);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Hayden","Harris","hayden.harris@gmail.com","06 76 33 72 31","hharris","chien55",3);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Tad","Oconnor","tad.oconnor@gmail.com","07 51 48 25 22","toconno","coucou123",3);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Fulton","Shaq","fulton.shaq@gmail.com","07 69 77 69 33","fshaq","pomme23",3);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Amelia","Dawson","amelia.dawson@gmail.com","06 03 04 90 68","adawson","poutine666",3);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Ariel","Chandler","ariel.chandler@gmail.com","06 27 65 14 80","achandl","tom32",3);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Johanna","Lindsey","johanna.lindsey@gmail.com","01 27 65 14 80","jlindse","ouragan67",3);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("Henry","Flowers","henry.flowers@gmail.com","01 27 65 14 80","hflower","neige12",3);
-INSERT INTO Parent (nom,prenom,mail,telephone,id,psswd,idStatut) VALUES ("John","Lennon","john.lennon@gmail.com","01 27 65 14 80","jlennon","froid99",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Thibault","Cothenet","thibault.cothenet@orange.fr","06 21 60 78 65","tcothen","toto",1);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Antoine","Julien","antoine.julien@gmail.com","06 39 91 14 64","ajulien","tutu",2);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Preston","Shepherd","preston.sheperd@gmail.com","07 59 60 70 27","pshephe","azerty",2);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Ifeoma","Ryan","ifeoma.ryan@gmail.com","07 49 99 87 36","iryan","qwerty",2);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Kelsey","Justice","kelsey.justice@gmail.com","06 97 05 12 30","kjustic","chat123",2);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Deirdre","Tran","deirdre.tran@gmail.com","06 39 67 68 71","dtran","quebec5",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Emerson","Bass","emerson.bass@gmail.com","06 63 31 26 41","ebass","montreal9",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Hayden","Harris","hayden.harris@gmail.com","06 76 33 72 31","hharris","chien55",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Tad","Oconnor","tad.oconnor@gmail.com","07 51 48 25 22","toconno","coucou123",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Fulton","Shaq","fulton.shaq@gmail.com","07 69 77 69 33","fshaq","pomme23",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Amelia","Dawson","amelia.dawson@gmail.com","06 03 04 90 68","adawson","poutine666",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Ariel","Chandler","ariel.chandler@gmail.com","06 27 65 14 80","achandl","tom32",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Johanna","Lindsey","johanna.lindsey@gmail.com","01 27 65 14 80","jlindse","ouragan67",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Henry","Flowers","henry.flowers@gmail.com","01 27 65 14 80","hflower","neige12",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("John","Lennon","john.lennon@gmail.com","01 27 65 14 80","jlennon","froid99",3);
 
 ######################### INSERTIONS DANS LA TABLE ENFANT #########################
 
@@ -672,7 +673,7 @@ call creer_Compte_Enfant("Madeson","Oconnor","2004/04/08",9);
 call creer_Compte_Enfant("Big","Shaq","2009/04/13",10);
 call creer_Compte_Enfant("Isaac","Shaq","2002/09/30",10);
 call creer_Compte_Enfant("Justina","Dawson","2004/06/28",11);
-call creer_Compte_Enfant("Mari","Chandler","2011/08/28",11);
+call creer_Compte_Enfant("Mari","Dawson","2011/08/28",11);
 call creer_Compte_Enfant("Mara","Lindsey","2009/05/03",12);
 call creer_Compte_Enfant("Jackson","Lindsey","2005/07/13",12);
 call creer_Compte_Enfant("Malcolm","Flowers","2001/04/17",13);
