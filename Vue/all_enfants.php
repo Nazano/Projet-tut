@@ -31,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-          <?php display_Enfants(); ?>
+          <?php display_All_Enfants(); ?>
         </tbody>
       </table>
     </div>

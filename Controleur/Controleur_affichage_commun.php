@@ -1,7 +1,7 @@
 <?php
 require_once("../Modele/user.php");
 require_once("../Modele/produit.php");
-session_start();
+//session_start();
 function afficher_header()
 {
   printf('<div class="container-fluid" style="background-color: #A9F5A9;">
