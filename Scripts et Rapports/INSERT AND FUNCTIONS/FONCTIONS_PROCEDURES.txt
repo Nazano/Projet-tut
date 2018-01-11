@@ -62,7 +62,7 @@ BEGIN
 END|
  
  
-DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Parent(nomP VARCHAR(20), prenomP VARCHAR(20), mailP VARCHAR(50), telephoneP VARCHAR(10), idStatutP INT, idP INT, psswdP VARCHAR(20))
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Parent(nomP VARCHAR(20), prenomP VARCHAR(20), mailP VARCHAR(50), telephoneP VARCHAR(10), idStatutP VARCHAR(20), idP INT, psswdP VARCHAR(20))
 BEGIN
     INSERT INTO Parent( nom, prenom, mail, telephone, idStatut, id, psswd ) VALUES( nomP, prenomP, mailP, telephoneP, idStatutP, idP, psswdP);
 END|
@@ -321,10 +321,6 @@ END|
 
 DELIMITER | CREATE OR REPLACE PROCEDURE reset_BD()
 BEGIN
-    /* REMETTRE LE SOLDE DES ENFANTS A 0 */
-    UPDATE compte
-    SET solde = 0;
-    
     /* REMETTRE A 0 LES CONSOMMATIONS ET LES ACHATS */
     DELETE FROM achat;
     DELETE FROM consommation;

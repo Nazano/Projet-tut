@@ -24,7 +24,7 @@
                     $this->pwd = $args[3];
                     $this->mail = $args[4];
                     $this->tel = $args[5];
-                    $result= mysqli_query($this->co,"call creer_Compte_Parent( '$this->nom', '$this->prenom', '$this->mail', '$this->tel', 1, '$this->username', '$this->pwd' )") or die ("Erreur lors de l'appel de la fonction.");
+                    $result= mysqli_query($this->co,"call creer_Compte_Parent( '$this->nom', '$this->prenom', '$this->mail', '$this->tel', 3, '$this->username', '$this->pwd' )") or die ("Erreur lors de l'appel de la fonction.");
                     $result2 = mysqli_query($this->co,"SELECT * FROM parent WHERE id = '$this->username' AND psswd = '$this->pwd'") or die("Erreur lors de la requete de recherche du membre");
                     while ($row = mysqli_fetch_assoc($result2)) {
                         $this->id = $row["id"];
