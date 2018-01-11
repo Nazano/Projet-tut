@@ -30,19 +30,14 @@ function afficher_menus()
 function afficher_admin()
 {
   printf('<div class="col-lg-4 col-md-6 jumbotron ma ">
-  <h1>Mes Enfants</h1>
-  <p>Consulter la liste de tous vos enfants et ajouter leur du solde.</p>
+  <h1>Enfant</h1>
+  <p>Consulter la liste de tous les enfants</p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
-</div>
-<div class="col-lg-4 col-md-6 jumbotron ma ">
-<h1>Enfants</h1>
-<p>Consulter la liste de tous les enfants</p>
-<button type="button" class="btn btn-primary" onclick="location.href=\'all_enfants.php\'">Voir enfants</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits</h1>
   <p>Gérez les produits disponibles pour les gouters (ajout ou suppression) </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'produits.php\'">Voir produits</button>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'Produits.php\'">Voir produits</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Courses</h1>
@@ -56,32 +51,22 @@ function afficher_admin()
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Parents</h1>
-  <p>Afficher la liste des parents. </p>
+  <p>Permet d afficher la liste des parents. </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'parents.php\'">Voir parents</button>
-</div>
-<div class="col-lg-4 col-md-6 jumbotron ma">
-  <h1>Réinitialiser</h1>
-  <p>Réinitialiser la base de données. </p>
-  <button type="button" class="btn btn-primary" onclick="if(confirm(\'Êtes-vous sûr de vouloir réinitialiser la base de données ?\')) document.location.href=\'../Controleur/reset.php\'">Réinitialiser</button>
 </div>');
 }
 
 function afficher_benevole()
 {
   printf('<div class="col-lg-4 col-md-6 jumbotron ma ">
-  <h1>Mes Enfants</h1>
-  <p>Consulter la liste de tous vos enfants et ajouteur leur du solde.</p>
+  <h1>Enfants</h1>
+  <p>Consulter la liste de tous les enfants et de leur ajouter une consommation</p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants </button>
-</div>
-<div class="col-lg-4 col-md-6 jumbotron ma ">
-<h1>Mes Enfants</h1>
-<p>Consulter la liste de tous les enfants</p>
-<button type="button" class="btn btn-primary" onclick="location.href=\'all_enfants.php\'">Voir enfants</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits (Stock) </h1>
   <p>Consulter les produits disponibles pour les gouters  </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'stock.php\'">Voir produits</button>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'Produits.php\'">Voir produits</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Courses</h1>
@@ -92,14 +77,14 @@ function afficher_benevole()
 
 function afficher_parent(){
   printf('<div class="col-lg-4 col-md-6 jumbotron ma ">
-  <h1>Mes Enfants</h1>
-  <p>Consulter la liste de vos enfants et ajouter leur du solde.</p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'all_enfants.php\'">Voir enfants</button>
+  <h1>Enfants</h1>
+  <p>Consulter la liste de vos enfants et de leur ajouter du solde</p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits </h1>
   <p>Consulter les produits disponibles pour les gouters  </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'stock.php\'">Voir produits</button>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'Produits.php\'">Voir produits</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Solde</h1>
