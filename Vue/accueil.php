@@ -17,8 +17,8 @@
           </div>
           <div class="col">
             <span class="float-right">
-              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Controleur/formulaire_connexion.php'">Se Connecter</button>
-              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Controleur/formulaire_inscription.php'">S'inscrire</button>
+              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Vue/connexion.php'">Se Connecter</button>
+              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Vue/creer_compte.php'">S'inscrire</button>
             </span>
           </div>
         </div>
