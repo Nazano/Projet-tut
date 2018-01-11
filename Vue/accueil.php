@@ -17,8 +17,8 @@
           </div>
           <div class="col">
             <span class="float-right">
-              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Controleur/formulaire_connexion.php'">Se Connecter</button>
-              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Controleur/formulaire_inscription.php'">S'inscrire</button>
+              <button type="button" class="btn btn-outline-dark" onclick="location.href='./connexion.php'">Se Connecter</button>
+              <button type="button" class="btn btn-outline-dark" onclick="location.href='./creer_compte.php'">S'inscrire</button>
             </span>
           </div>
         </div>
@@ -30,7 +30,7 @@
     <!-- Fin du header -->
     <div class="container-fluid">
       <div class="container">
-        <img src="Images/rugby_enfant_1.jpg" alt="Image non trouvée" />
+        <img src="./Images/enfants.jpg" alt="Image non trouvée" />
         <div class="col-lg-4 col-md-6 jumbotron ma">
             <p>Bienvenue sur l'application de gestion de gouté de vos enfants : APERO</p>
           </div>
