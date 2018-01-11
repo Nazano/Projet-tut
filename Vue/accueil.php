@@ -17,22 +17,22 @@
           </div>
           <div class="col">
             <span class="float-right">
-              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Vue/connexion.php'">Se Connecter</button>
-              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Vue/creer_compte.php'">S'inscrire</button>
+              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Controleur/formulaire_connexion.php'">Se Connecter</button>
+              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Controleur/formulaire_inscription.php'">S'inscrire</button>
             </span>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
-      <h3>Bienvenue</h3>
+      <h3>Bievenue</h3>
     </div>
     <!-- Fin du header -->
     <div class="container-fluid">
       <div class="container">
-        <img src="./Images/enfants.jpg" alt="Image non trouvée" />
+        <img src="Images/rugby_enfant_1.jpg" alt="Image non trouvée" />
         <div class="col-lg-4 col-md-6 jumbotron ma">
-            <p>Bienvenue sur l'application de gestion de goûter de vos enfants : APERO</p>
+            <p>Bienvenue sur l'application de gestion de gouté de vos enfants : APERO</p>
           </div>
       </div>
     </div>
