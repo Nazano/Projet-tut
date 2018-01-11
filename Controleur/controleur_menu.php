@@ -17,11 +17,11 @@ function afficher_nom()
 
 function afficher_menus()
 {
-  if($_SESSION['user']->getRank() == 3)
+  if($_SESSION['user']->getRank() == 1)
     afficher_admin();
   elseif ($_SESSION['user']->getRank() == 2)
     afficher_benevole();
-  elseif ($_SESSION['user']->getRank() == 1)
+  elseif ($_SESSION['user']->getRank() == 3)
     afficher_parent();
   else //Si personne ou bug
     echo "rip pas de contenu, rang associé : ";
