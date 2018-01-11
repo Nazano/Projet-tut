@@ -29,12 +29,7 @@ function afficher_menus()
 
 function afficher_admin()
 {
-  printf('<div class="col-lg-4 col-md-6 jumbotron ma">
-  <h1>Stock</h1>
-  <p>Consulter le stock des divers produits </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'stock.php\'">Voir stock</button>
-</div>
-<div class="col-lg-4 col-md-6 jumbotron ma ">
+  printf('<div class="col-lg-4 col-md-6 jumbotron ma ">
   <h1>Enfant</h1>
   <p>Consulter la liste de tous les enfants</p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
@@ -42,7 +37,7 @@ function afficher_admin()
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits</h1>
   <p>Gérez les produits disponibles pour les gouters (ajout ou suppression) </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir produits</button>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'Produits.php\'">Voir produits</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Courses</h1>
@@ -101,26 +96,5 @@ function afficher_parent(){
   <p> Permet de vérifier qui a acheté quoi parmi vos enfants (historique des achats) </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir consommations</button>
 </div>');
-}
-
-function afficher_header()
-{
-  printf('<div class="container-fluid" style="background-color: #A9F5A9;">
-    <div class="container" ">
-      <div class="row align-items-center">
-        <div class="col" onclick="document.location.href=\'../Vue/\'">
-            <h1>APERO</h1>
-        </div>
-        <div class="col">
-          <span class="float-right">
-            <button type="button" class="btn btn-outline-dark" onclick="location.href=\'../Controleur/deconnexion.php\'">Deconnexion</button>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <h3>'. $_SESSION['user']->getPrenom() . " " . $_SESSION['user']->getNom() . '</h3>
-  </div>');
 }
  ?>
