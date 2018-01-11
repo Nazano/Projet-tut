@@ -1,4 +1,4 @@
-<?php require_once('../Controleur/controleur_menu.php'); ?>
+<?php require_once('../Controleur/controleur_menu.php'); require_once('../Controleur/controleur_affichage_commun.php');?>
 <!DOCTYPE html>
 <html>
   <head>
