@@ -16,7 +16,7 @@ function display_Produits() {
     }
 
     foreach ($Produit as $P) {
-        
+
     ?>
         <p>
             <tr>
@@ -35,13 +35,5 @@ function display_Produits() {
         </p>
     <?php
     }
-        
-        if ($user->getRank() == 1) { ?>
-        <p>
-            <button type="button" class="btn btn-info" onclick="location.href=\'enfants.php\'">Ajouter un produit </button>
-        </p>
-            <?php
-        }
 }
 ?>
-

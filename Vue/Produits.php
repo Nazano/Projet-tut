@@ -1,5 +1,5 @@
-<?php 
-  require_once('../Controleur/controleur_produit.php'); 
+<?php
+  require_once('../Controleur/controleur_produit.php');
   require_once("../Controleur/controleur_affichage_commun.php");
 ?>
 <!DOCTYPE html>
@@ -32,9 +32,16 @@
         </thead>
         <tbody>
           <?php  display_Produits(); ?>
-          
         </tbody>
       </table>
+      <?php
+      if ($_SESSION["user"]->getRank() == 1) { ?>
+      <p>
+          <button type="button" class="btn btn-info" onclick="location.href=\'enfants.php\'">Ajouter un produit </button>
+      </p>
+          <?php
+      }
+      ?>
     </div>
   </body>
 </html>

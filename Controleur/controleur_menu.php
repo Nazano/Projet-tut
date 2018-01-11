@@ -42,7 +42,7 @@ function afficher_admin()
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits</h1>
   <p>Gérez les produits disponibles pour les gouters (ajout ou suppression) </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'Produits.php\'">Voir produits</button>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'produits.php\'">Voir produits</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Courses</h1>
