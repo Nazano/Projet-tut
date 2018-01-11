@@ -88,7 +88,7 @@
             </div>
 
             <input type="submit" name="" value="Créer un compte" class="btn btn-primary">
-            <span>ou <a href="login.html">se connecter</a> </span>
+            <span>ou <a href="connexion.php">se connecter</a> </span>
 
           </form>
 

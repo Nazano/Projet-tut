@@ -1,3 +1,4 @@
+<?php include "../Controleur/controleur_menu.php"; ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,23 +10,7 @@
   </head>
   <body>
     <!-- Header -->
-    <div class="container-fluid" style="background-color: #A9F5A9;">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col">
-              <h1>APERO</h1>
-          </div>
-          <div class="col">
-            <span class="float-right">
-              <button type="button" class="btn btn-outline-dark" onclick="location.href='mon_compte.html'">Mon compte</button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <h3>Nom prénom</h3>
-    </div>
+    <?php afficher_header(); ?>
     <!-- fin header -->
     <div class="container">
       <div class="jumbotron">

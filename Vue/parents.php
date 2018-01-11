@@ -1,3 +1,4 @@
+<?php include "../Controleur/controleur_menu.php"; ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,14 +18,14 @@
           </div>
           <div class="col">
             <span class="float-right">
-              <button type="button" class="btn btn-outline-dark" onclick="location.href='mon_compte.html'">Mon compte</button>
+              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Controleur/deconnexion.php'">Deconnexion</button>
             </span>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
-      <h3>Nom prénom</h3>
+      <h3><?php afficher_nom(); ?></h3>
     </div>
     <!-- fin header -->
     <div class="container">

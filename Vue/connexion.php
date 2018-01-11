@@ -41,7 +41,7 @@
                     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Se connecter"/>
                   </div>
                   <div class="col-md-6">
-                      <button class="btn btn-lg btn-link btn-block" onclick="location.href='creer_compte.html'">Créer un compte</button>
+                      <button class="btn btn-lg btn-link btn-block" onclick="location.href='creer_compte.php'">Créer un compte</button>
                   </div>
                 </div>
               </div>

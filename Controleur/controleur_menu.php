@@ -5,54 +5,122 @@ DES LA CONNEXION IL FAUT STOCKER DANS UNE VARIABLE DE SESSION LE TYPE DE PARENT(
 -->
 
 <?php
+include "../Modele/user.php";
+session_start();
+
+function afficher_nom()
+{
+  $prenom = $_SESSION['user']->getPrenom();
+  $nom = $_SESSION['user']->getNom();
+  echo "$prenom " .  "$nom";
+}
+
 function afficher_menus()
 {
-  if(true/*Admin*/)
+  if($_SESSION['user']->getRank() == 3)
     afficher_admin();
-  elseif (false/*Président ou parent accompagnateur*/)
-    afficher_parent_AC();
-  elseif (false/*Parent*/)
+  elseif ($_SESSION['user']->getRank() == 2)
+    afficher_benevole();
+  elseif ($_SESSION['user']->getRank() == 1)
     afficher_parent();
   else //Si personne ou bug
-    echo "";
+    echo "rip pas de contenu, rang associé : ";
 }
 
 function afficher_admin()
 {
-  printf('
-  <div class="col-lg-4 col-md-6 jumbotron ma">
-    <h1>Stock</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <button type="button" class="btn btn-primary" onclick="location.href=\'stock.php\'">Voir Stock</button>
-  </div>
-  <div class="col-lg-4 col-md-6 jumbotron ma ">
-    <h1>Parents</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <button type="button" class="btn btn-primary" onclick="location.href=\'parents.html\'">Voir parents</button>
-  </div>
-  <div class="col-lg-4 col-md-6 jumbotron ma ">
-    <h1>Consommations</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <button type="button" class="btn btn-primary">Voir consommations</button>
-  </div>
-  <div class="col-lg-4 col-md-6 jumbotron ma">
-    <h1>Enfants</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
-  </div>
-  <div class="col-lg-4 col-md-6 jumbotron ma ">
-    <h1>Comptes</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <button type="button" class="btn btn-primary">Voir comptes</button>
-  </div>');
+  printf('<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Stock</h1>
+  <p>Consulter le stock des divers produits </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'stock.php\'">Voir stock</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma ">
+  <h1>Enfant</h1>
+  <p>Consulter la liste de tous les enfants</p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Produits</h1>
+  <p>Gérez les produits disponibles pour les gouters (ajout ou suppression) </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'>Voir produits</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Courses</h1>
+  <p>Permet de vérifier qui a acheté quoi (historique des achats) pour le ocmpte de l association </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir courses</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Consommations</h1>
+  <p> Permet de vérifier qui a acheté quoi parmi les enfants (historique des ventes) </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir consommations </button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Parents</h1>
+  <p>Permet d afficher la liste des parents. </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'parents.php\'">Voir parents</button>
+</div>');
 }
 
-function afficher_parent_AC()
+function afficher_benevole()
 {
-  printf('<h1 class="display-4">Affichage du parent accompagnateur ou de la président(e)</h1>');
+  printf('<div class="col-lg-4 col-md-6 jumbotron ma ">
+  <h1>Enfants</h1>
+  <p>Consulter la liste de tous les enfants et de leur ajouter une consommation</p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants </button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Produits (Stock) </h1>
+  <p>Consulter les produits disponibles pour les gouters  </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'stock.php\'">Voir produits</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Courses</h1>
+  <p>Permet de voir quelles courses vous avez réalisées </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir courses</button>
+</div>');
 }
 
 function afficher_parent(){
-  printf('<h1 class="display-4">Affichage du parent normal</h1>');
+  printf('<div class="col-lg-4 col-md-6 jumbotron ma ">
+  <h1>Enfants</h1>
+  <p>Consulter la liste de vos enfants et de leur ajouter du solde</p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Produits </h1>
+  <p>Consulter les produits disponibles pour les gouters  </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'stock.php\'">Voir produits</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Solde</h1>
+  <p>Permet de consulter votre solde </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'solde.php\'">Voir solde</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Les consommations</h1>
+  <p> Permet de vérifier qui a acheté quoi parmi vos enfants (historique des achats) </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir consommations</button>
+</div>');
+}
+
+function afficher_header()
+{
+  printf('<div class="container-fluid" style="background-color: #A9F5A9;">
+    <div class="container" ">
+      <div class="row align-items-center">
+        <div class="col" onclick="document.location.href=\'../Vue/\'">
+            <h1>APERO</h1>
+        </div>
+        <div class="col">
+          <span class="float-right">
+            <button type="button" class="btn btn-outline-dark" onclick="location.href=\'../Controleur/deconnexion.php\'">Deconnexion</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h3>'.$_SESSION['user']->getPrenom() . " " .$_SESSION['user']->getNom() . '</h3>
+  </div>');
 }
  ?>
