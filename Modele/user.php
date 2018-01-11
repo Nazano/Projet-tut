@@ -10,6 +10,7 @@
         private $tel;
         private $pwd;
         private $rank;
+
         public function __construct() {
             include "connect.php";
             $cpt = func_num_args();
@@ -27,7 +28,7 @@
                     $result2 = mysqli_query($this->co,"SELECT * FROM parent WHERE id = '$this->username' AND psswd = '$this->pwd'") or die("Erreur lors de la requete de recherche du membre");
                     while ($row = mysqli_fetch_assoc($result2)) {
                         $this->id = $row["id"];
-                        $this->rank = $row["rank"];
+                        $this->rank = $row["idStatut"];
                         $this->mail = $row["mail"];
                     }
                     $this->connexion();
@@ -62,6 +63,7 @@
         public function modif_mdp($mdp) {
             $result = mysqli_querry($this->co,"UPDATE membres set mdpasse=$mdp where id='$this->id'; ") or die("Erreur lors du changement de mdp");
             $this->psswd = $mdp;
+            $_SESSION['user']=$this;
         }
         public function getID() {
             return $this->id;
