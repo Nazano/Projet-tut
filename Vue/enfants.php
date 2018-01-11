@@ -22,8 +22,8 @@
       <table class="table">
         <thead>
             <tr>
-              <th scope="nom">Prénom</th>
-              <th scope="prenom">Nom</th>
+              <th scope="nom">Nom</th>
+              <th scope="prenom">Prénom</th>
               <th scope="dateNaiss">Naissance</th>
               <th scope="solde">Son solde</th>
               <th scope="modifier">Modifier</th>
