@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="container">
-      <h3>Bievenue</h3>
+      <h3>Bienvenue</h3>
     </div>
     <!-- Fin du header -->
     <div class="container-fluid">
