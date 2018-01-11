@@ -62,7 +62,7 @@ BEGIN
 END|
  
  
-DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Parent(nomP VARCHAR(20), prenomP VARCHAR(20), mailP VARCHAR(50), telephoneP VARCHAR(10), idStatutP VARCHAR(20), idP INT, psswdP VARCHAR(20))
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Parent(nomP VARCHAR(20), prenomP VARCHAR(20), mailP VARCHAR(50), telephoneP VARCHAR(10), idStatutP INT, idP VARCHAR(20), psswdP VARCHAR(20))
 BEGIN
     INSERT INTO Parent( nom, prenom, mail, telephone, idStatut, id, psswd ) VALUES( nomP, prenomP, mailP, telephoneP, idStatutP, idP, psswdP);
 END|
