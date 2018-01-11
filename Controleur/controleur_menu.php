@@ -5,7 +5,7 @@ DES LA CONNEXION IL FAUT STOCKER DANS UNE VARIABLE DE SESSION LE TYPE DE PARENT(
 -->
 
 <?php
-include "../Modele/user.php";
+require_once("../Modele/user.php");
 session_start();
 
 function afficher_nom()
@@ -17,14 +17,14 @@ function afficher_nom()
 
 function afficher_menus()
 {
-  if($_SESSION['user']->getRank() == 1)
+  if($_SESSION['user']->getRank() == 3)
     afficher_admin();
   elseif ($_SESSION['user']->getRank() == 2)
     afficher_benevole();
-  elseif ($_SESSION['user']->getRank() == 3)
+  elseif ($_SESSION['user']->getRank() == 1)
     afficher_parent();
   else //Si personne ou bug
-    echo "rip pas de contenu, rang associé : ";
+    echo "rip pas de contenu, rang associé : " . $_SESSION['user']->getRank();
 }
 
 function afficher_admin()
@@ -34,29 +34,29 @@ function afficher_admin()
   <p>Consulter le stock des divers produits </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'stock.php\'">Voir stock</button>
 </div>
-<div class="col-lg-4 col-md-6 jumbotron ma">
+<div class="col-lg-4 col-md-6 jumbotron ma ">
   <h1>Enfant</h1>
   <p>Consulter la liste de tous les enfants</p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits</h1>
-  <p>Gérer les produits disponibles pour les goûters. </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir produits</button>
+  <p>Gérez les produits disponibles pour les gouters (ajout ou suppression) </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'>Voir produits</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Courses</h1>
-  <p>Consulter l\'historique des achats pour le compte de l\'association. </p>
+  <p>Permet de vérifier qui a acheté quoi (historique des achats) pour le ocmpte de l association </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir courses</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Consommations</h1>
-  <p> Consulter l\'historique des ventes pour le compte de l\'association. </p>
+  <p> Permet de vérifier qui a acheté quoi parmi les enfants (historique des ventes) </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir consommations </button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Parents</h1>
-  <p>Afficher la liste des parents. </p>
+  <p>Permet d afficher la liste des parents. </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'parents.php\'">Voir parents</button>
 </div>');
 }
@@ -120,7 +120,7 @@ function afficher_header()
     </div>
   </div>
   <div class="container">
-    <h3>'.$_SESSION['user']->getPrenom() . " " .$_SESSION['user']->getNom() . '</h3>
+    <h3>'. $_SESSION['user']->getPrenom() . " " . $_SESSION['user']->getNom() . '</h3>
   </div>');
 }
  ?>
