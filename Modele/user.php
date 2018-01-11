@@ -1,7 +1,8 @@
 <?php
 
     class User
-    {
+    {   
+        private $co;
         private $id;
         private $nom;
         private $prenom;
@@ -76,6 +77,9 @@
         }
         public function getRank() {
             return $this->rank;
+        }
+        public function getCo() {
+            return $this->co;
         }
     }
 ?>
