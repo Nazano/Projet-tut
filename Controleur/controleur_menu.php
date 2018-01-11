@@ -34,29 +34,29 @@ function afficher_admin()
   <p>Consulter le stock des divers produits </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'stock.php\'">Voir stock</button>
 </div>
-<div class="col-lg-4 col-md-6 jumbotron ma ">
+<div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Enfant</h1>
   <p>Consulter la liste de tous les enfants</p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits</h1>
-  <p>Gérez les produits disponibles pour les gouters (ajout ou suppression) </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'>Voir produits</button>
+  <p>Gérer les produits disponibles pour les goûters. </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir produits</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Courses</h1>
-  <p>Permet de vérifier qui a acheté quoi (historique des achats) pour le ocmpte de l association </p>
+  <p>Consulter l\'historique des achats pour le compte de l\'association. </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir courses</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Consommations</h1>
-  <p> Permet de vérifier qui a acheté quoi parmi les enfants (historique des ventes) </p>
+  <p> Consulter l\'historique des ventes pour le compte de l\'association. </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir consommations </button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Parents</h1>
-  <p>Permet d afficher la liste des parents. </p>
+  <p>Afficher la liste des parents. </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'parents.php\'">Voir parents</button>
 </div>');
 }
