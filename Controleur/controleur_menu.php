@@ -56,8 +56,13 @@ function afficher_admin()
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Parents</h1>
-  <p>Permet d afficher la liste des parents. </p>
+  <p>Afficher la liste des parents. </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'parents.php\'">Voir parents</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Réinitialiser</h1>
+  <p>Réinitialiser la base de données. </p>
+  <button type="button" class="btn btn-primary" onclick="if(confirm(\'Êtes-vous sûr de vouloir réinitialiser la base de données ?\')) document.location.href=\'../Controleur/reset.php\'">Réinitialiser</button> 
 </div>');
 }
 

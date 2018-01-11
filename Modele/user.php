@@ -77,5 +77,8 @@
         public function getRank() {
             return $this->rank;
         }
+        public function getCo() {
+          return $this->co;
+        }
     }
 ?>
