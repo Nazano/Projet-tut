@@ -26,7 +26,7 @@ function display_Produits() {
 
             <?php if ($user->getRank() == 1) { 
                 $modifier = '\'modifier_produit.php' . "?id=" . $P->getID() .'\'' ;
-                $supprimer = '\'supprimer_produit.php' . "?id=" . $P->getID() . '\'' ;
+                $supprimer = '\'../Controleur/supprimer_produit.php' . "?id=" . $P->getID() . '\'' ;
 
             ?>
 
