@@ -9,7 +9,7 @@
     <p>Prénom : <input type="text" name="prenom" value=""> </p>
     <p>Nom : <input type="text" name="nom" value=""> </p>
     <p>Date de naissance : <input type="date" name="birthday" value=""> </p>
-    <p><input type="button" name="Ajouter" value="Ajouter un enfant"> </p>
+    <p><input type="submit" name="Ajouter" value="Ajouter un enfant"> </p>
     </form>
   </body>
 </html>
