@@ -37,7 +37,7 @@
       <?php
       if ($_SESSION["user"]->getRank() == 1) { ?>
       <p>
-          <button type="button" class="btn btn-info" onclick="location.href=\'enfants.php\'">Ajouter un produit </button>
+          <button type="button" class="btn btn-info" onclick="location.href='modifier_produit.php'">Ajouter un produit </button>
       </p>
           <?php
       }
