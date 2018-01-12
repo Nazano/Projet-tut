@@ -25,13 +25,13 @@ function display_Produits() {
             <td> <?php echo $P->getStock(); ?> </td>
 
             <?php if ($user->getRank() == 1) { 
-                $modifier = 'modifier_produit.php' . "?id=" . $P->getID() ;
-                $supprimer = 'supprimer_produit.php' . "?id=" . $P->getID() ;
+                $modifier = '\'modifier_produit.php' . "?id=" . $P->getID() .'\'' ;
+                $supprimer = '\'supprimer_produit.php' . "?id=" . $P->getID() . '\'' ;
 
             ?>
 
-            <td> <button type="button" class="btn btn-info" onclick="location.href=\'<?php echo "$modifier" ?>\'">Modifier</button> </td>
-            <td> <button type="button" class="btn btn-info" onclick="location.href=\'<?php echo "$supprimer" ?>\'">Supprimer</button> </td>
+            <td> <button type="button" class="btn btn-info" onclick="location.href=<?php echo "$modifier" ?>">Modifier</button> </td>
+            <td> <button type="button" class="btn btn-info" onclick="location.href=<?php echo "$supprimer" ?>">Supprimer</button> </td>
 
             <?php } ?>
 
@@ -39,13 +39,6 @@ function display_Produits() {
         </p>
     <?php
     }
-        
-        if ($user->getRank() == 1) { ?>
-        <p>
-            <button type="button" class="btn btn-info" onclick="location.href=\'ajouter_produit.php\'">Ajouter un produit </button>
-        </p>
-            <?php
-        }
 }
 ?>
 
