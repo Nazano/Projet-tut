@@ -12,5 +12,5 @@
     $id = $produit->getID();
     $stock = $produit->getStock();
     $result = mysqli_query($co,"CALL modifier_Produit('$id','$newPrix','$stock','$newNom')") or die("echec de la maj du produit");
-    echo "WIP";
+    header('Location: ../vue/produits.php');
 ?>
