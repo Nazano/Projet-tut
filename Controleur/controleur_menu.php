@@ -30,9 +30,14 @@ function afficher_menus()
 function afficher_admin()
 {
   printf('<div class="col-lg-4 col-md-6 jumbotron ma ">
-  <h1>Enfant</h1>
-  <p>Consulter la liste de tous les enfants</p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
+  <h1>Mes Enfants</h1>
+  <p>Consulter la liste de tous vos enfants et ajouter leur du solde</p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir mes enfants</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma ">
+<h1>Enfants</h1>
+<p>Consulter la liste de tous les enfants</p>
+<button type="button" class="btn btn-primary" onclick="location.href=\'all_enfants.php\'">Voir enfants</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits</h1>
@@ -41,13 +46,13 @@ function afficher_admin()
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Courses</h1>
-  <p>Permet de vérifier qui a acheté quoi (historique des achats) pour le compte de l association </p>
+  <p>Permet de vérifier qui a acheté quoi (historique des achats) pour le ocmpte de l association </p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'Courses.php\'">Voir courses</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Consommations</h1>
   <p> Permet de vérifier qui a acheté quoi parmi les enfants (historique des ventes) </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir consommations </button>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'consommation.php\'">Voir consommations </button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Parents</h1>
@@ -59,9 +64,14 @@ function afficher_admin()
 function afficher_benevole()
 {
   printf('<div class="col-lg-4 col-md-6 jumbotron ma ">
-  <h1>Enfants</h1>
-  <p>Consulter la liste de tous les enfants et de leur ajouter une consommation</p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants </button>
+  <h1>Mes Enfants</h1>
+  <p>Consulter la liste de tous vos enfants et ajouter leur du solde</p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir mes enfants</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma ">
+<h1>Enfants</h1>
+<p>Consulter la liste de tous les enfants</p>
+<button type="button" class="btn btn-primary" onclick="location.href=\'all_enfants.php\'">Voir enfants</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits (Stock) </h1>
@@ -71,15 +81,20 @@ function afficher_benevole()
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Courses</h1>
   <p>Permet de voir quelles courses vous avez réalisées </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'Courses.php\'">Voir courses</button>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'courses.php\'">Voir courses</button>
+</div>
+<div class="col-lg-4 col-md-6 jumbotron ma">
+  <h1>Consommations</h1>
+  <p> Permet de vérifier qui a acheté quoi parmi les enfants (historique des ventes) </p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'consommation.php\'">Voir consommations </button>
 </div>');
 }
 
 function afficher_parent(){
   printf('<div class="col-lg-4 col-md-6 jumbotron ma ">
-  <h1>Enfants</h1>
-  <p>Consulter la liste de vos enfants et de leur ajouter du solde</p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir enfants</button>
+  <h1>Mes Enfants</h1>
+  <p>Consulter la liste de tous vos enfants et ajouter leur du solde</p>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'enfants.php\'">Voir mes enfants</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Produits </h1>
@@ -94,7 +109,7 @@ function afficher_parent(){
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Les consommations</h1>
   <p> Permet de vérifier qui a acheté quoi parmi vos enfants (historique des achats) </p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'#\'">Voir consommations</button>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'consommation.php\'">Voir consommations</button>
 </div>');
 }
  ?>
