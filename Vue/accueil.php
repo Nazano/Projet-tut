@@ -6,6 +6,9 @@
     <!-- css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="../Vue/js/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
   </head>
   <body>
     <!-- Header -->
@@ -30,11 +33,22 @@
     <!-- Fin du header -->
     <div class="container-fluid">
       <div class="container">
-        <img src="./Images/enfants.jpg" alt="Image non trouvée" />
-        <div class="col-lg-4 col-md-6 jumbotron ma">
-            <p>Bienvenue sur l'application de gestion de gouté de vos enfants : APERO</p>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="Images/reu1.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="Images/enfants.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="Images/reu2.jpg" alt="Third slide">
+            </div>
           </div>
+        </div>
       </div>
     </div>
+
+
   </body>
 </html>
