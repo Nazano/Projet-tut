@@ -26,11 +26,11 @@ BEGIN
 END|
  
  
-DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Enfant(nomE VARCHAR(20), prenomE VARCHAR(20), dateNaissanceE DATE, idCompteE INT)
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Enfant(prenomE VARCHAR(20), nomE VARCHAR(20), dateNaissanceE DATE, idCompteE INT)
 BEGIN
     DECLARE idCat INT;
     SET idCat = calculer_Categorie(dateNaissanceE);
-    INSERT INTO ENFANT VALUES(NULL, nomE, prenomE, dateNaissanceE, idCat, idCompteE);
+    INSERT INTO ENFANT(nom, prenom, dateNaissance, idCategorie, idCompte) VALUES(nomE, prenomE, dateNaissanceE, idCat, idCompteE);
 END |
  
  
