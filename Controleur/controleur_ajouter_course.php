@@ -10,7 +10,7 @@
         $newProd = clean_input($_POST['produit']);
         $newQte = clean_input($_POST['quantite']);
     }
-    $result = mysqli_query($co,"select * from produit where idProduit= '$newProd'") or die("Eche de la requete pour trouver le nom du produit");
+    $result = mysqli_query($co,"select * from produit where idProduit= '$newProd'") or die("Echec de la requete pour trouver le nom du produit");
     while ($row=mysqli_fetch_assoc($result)) {
         $nom = $row['libelle'];
     }
