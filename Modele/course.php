@@ -1,5 +1,5 @@
 <?php
-       
+
     class Course
     {
         private $idAchat;
@@ -25,11 +25,11 @@
                     $this->prix = $args[3];
                     $this->idParent = $args[4];
                     $this->idProduit = $args[5];
-                    $result = mysqli_query($co,"Select * from produit where idProduit = '$this->idProduit'");
+                    $result = mysqli_query($co,"Select * from Produit where idProduit = '$this->idProduit'");
                     while ($row = mysqli_fetch_assoc($result)) {
                         $this->nomProduit = $row["libelle"];
                     }
-                    $result = mysqli_query($co,"Select * from parent where idParent='$this->idParent'") or die("echec de la recherche des infos des parents");
+                    $result = mysqli_query($co,"Select * from Parent where idParent='$this->idParent'") or die("echec de la recherche des infos des parents");
                     while ($row = mysqli_fetch_assoc($result)){
                         $this->nomParent = $row['nom'];
                         $this->prenomParent = $row['prenom'];
@@ -43,11 +43,11 @@
                     $this->idParent = $args[3];
                     $this->nomProduit = $args[4];
                     $result = mysqli_query($co,"call creer_course('$this->nomProduit','$this->qteAchete','$this->dateAchat','$this->prix'");
-                    $result2 = mysqli_query($co,"SELECT * FROM achat WHERE qteAchete='$this->qteAchete' and dateAchat='$this->dateAchat' and prix = '$this->prix' and idParent ='$this->idParent' and idProduit='$this->idProduit'") or die("Erreur lors de la requete de recherche du membre");
+                    $result2 = mysqli_query($co,"SELECT * FROM Achat WHERE qteAchete='$this->qteAchete' and dateAchat='$this->dateAchat' and prix = '$this->prix' and idParent ='$this->idParent' and idProduit='$this->idProduit'") or die("Erreur lors de la requete de recherche du membre");
                     while ($row = mysqli_fetch_assoc($result2)) {
                         $this->id = $row["idAchat"];
                     }
-                    $result = mysqli_query($co,"Select * from parent where idParent='$this->idParent'") or die("echec de la recherche des infos des parents");
+                    $result = mysqli_query($co,"Select * from Parent where idParent='$this->idParent'") or die("echec de la recherche des infos des parents");
                     while ($row = mysqli_fetch_assoc($result)){
                         $this->nomParent = $row['nom'];
                         $this->prenomParent = $row['prenom'];
@@ -84,6 +84,6 @@
         public function getPrenomParent() {
             return $this->prenomParent;
         }
-          
+
     }
 ?>
