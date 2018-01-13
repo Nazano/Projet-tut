@@ -28,7 +28,7 @@
               <th scope="nom">Libelle</th>
               <th scope="prenom">Prix</th>
               <th scope="dateNaiss">Stock</th>
-              <th scope="modifier">modifier</th>
+              <th scope="modifier">Modifier</th>
               <th scope="supprimer">Supprimer</th>
             </tr>
         </thead>
