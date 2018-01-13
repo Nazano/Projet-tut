@@ -12,7 +12,9 @@
         }
         $_SESSION['modifCourse']=$course;
     }
-    
+    $user = $_SESSION['user'];
+    $idParent = $user->getID();
+    $rank = $user->getRank();
     
     ?>
     <!DOCTYPE html>
@@ -58,12 +60,17 @@
 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Date :</span>
+                <span class="input-group-text" id="basic-addon1">Parent :</span>
               </div>
               <select class="form-control" name="parent">
                         <option value="">Choisissez un parent : </option>
                         <?php 
-                            $result = mysqli_query($co, "Select * from parent where idStatut = 1 OR idStatut = 2") or die("echec de la recherche des parent");
+                            if ($user->getRank() == 1 ) {
+                                $requete = "Select * from parent where idStatut = 1 OR idStatut = 2 ";
+                            } else if ($user->getRank() == 2 ){
+                                $requete = "Select * from parent where idParent = '$idParent' ";
+                            }
+                            $result = mysqli_query($co, $requete) or die("echec de la recherche des parent");
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $value = $row['prenom'] . " " . $row['nom'];
                                 $id = $row['idParent'];
