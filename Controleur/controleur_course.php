@@ -1,6 +1,6 @@
 <?php
 #require("../Modele/connect.php");
-require_once("../Modele/Course.php");
+require_once("../Modele/course.php");
 require_once("../Modele/user.php");
 require_once("../Modele/parent.php");
 session_start();
@@ -16,7 +16,7 @@ function display_Courses() {
         $requete = "Select * from achat where idParent = '$id'";
     }
     $result = mysqli_query($co,$requete) or die("Echec de la requete pour récupérer les course !");
-    
+
     $cpt=0;
     $course = array();
     while($row = mysqli_fetch_assoc($result)) {
@@ -25,7 +25,7 @@ function display_Courses() {
     }
 
     foreach ($course as $C) {
-        
+
     ?>
         <p>
             <tr>
@@ -35,7 +35,7 @@ function display_Courses() {
             <td> <?php echo $C->getDateAchat(); ?> </td>
             <td> <?php echo $C->getPrix(); ?> </td>
 
-            <?php if ($user->getRank() == 1) { 
+            <?php if ($user->getRank() == 1) {
                 $modifier = '\'modifier_course.php' . "?id=" . $C->getIdAchat() .'\'' ;
                 $supprimer = '\'../Controleur/supprimer_course.php' . "?id=" . $C->getIdAchat() . '\'' ;
 
@@ -52,4 +52,3 @@ function display_Courses() {
     }
 }
 ?>
-

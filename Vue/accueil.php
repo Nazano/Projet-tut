@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Accueil</title>
     <!-- css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="css/style.css"> -->
