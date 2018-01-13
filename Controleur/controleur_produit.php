@@ -7,7 +7,7 @@ session_start();
 function display_Produits() {
     $user = $_SESSION['user'];
     $co = mysqli_connect("localhost","root","","Projet_tut") or die("Erreur de connexion");
-    $result = mysqli_query($co,"SELECT * FROM produit") or die("Echec de la requete pour récupérer les produits !");
+    $result = mysqli_query($co,"SELECT * FROM Produit") or die("Echec de la requete pour récupérer les produits !");
     $cpt=0;
     $Produit = array();
     while($row = mysqli_fetch_assoc($result)) {
@@ -16,7 +16,7 @@ function display_Produits() {
     }
 
     foreach ($Produit as $P) {
-        
+
     ?>
         <p>
             <tr>
@@ -24,7 +24,7 @@ function display_Produits() {
             <td> <?php echo $P->getPrix(); ?> </td>
             <td> <?php echo $P->getStock(); ?> </td>
 
-            <?php if ($user->getRank() == 1) { 
+            <?php if ($user->getRank() == 1) {
                 $modifier = '\'modifier_produit.php' . "?id=" . $P->getID() .'\'' ;
                 $supprimer = '\'../Controleur/supprimer_produit.php' . "?id=" . $P->getID() . '\'' ;
 
@@ -41,4 +41,3 @@ function display_Produits() {
     }
 }
 ?>
-

@@ -47,7 +47,7 @@ function afficher_admin()
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Courses</h1>
   <p>Courses faites par les parents pour l\'association.</p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'Courses.php\'">Voir courses</button>
+  <button type="button" class="btn btn-primary" onclick="location.href=\'courses.php\'">Voir courses</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Consommations</h1>
