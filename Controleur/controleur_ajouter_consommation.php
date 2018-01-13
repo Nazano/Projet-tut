@@ -1,4 +1,4 @@
-<?php 
+<?php
     require_once("../Modele/clean.php");
     require_once("../Modele/connect.php");
     require_once("../Modele/consommation.php");
@@ -10,7 +10,7 @@
         $Qte = clean_input($_POST['quantite']);
     }
     echo "call ajouter_consommation('$Prod','$Enfant','$Qte)". "<br/>";
-    $result = mysqli_query($co,"call ajouter_consommation('$Prod','$Enfant','$Qte')") or die("echec de l'ajout de la consommation (faire attention à bien remplir chaque champs ! )");
-    
+    $result = mysqli_query($co,"call ajouter_consommation('$Prod','$Enfant','$Qte')") or die(mysqli_error($co));
+
     header('Location: ../vue/consommation.php');
 ?>

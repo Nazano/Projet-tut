@@ -48,7 +48,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-6 offset-md-3">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="<?php if (isset($_GET['id'])) { echo "Modfier"; } else {echo "Ajouter";} ?>"/>
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="<?php if (isset($_GET['id'])) { echo "Modifier"; } else {echo "Ajouter";} ?>"/>
                   </div>
                 </div>
               </div>
