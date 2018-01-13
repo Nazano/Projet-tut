@@ -1,5 +1,5 @@
 <?php
-    
+
     class Consommation
     {
         private $idConso;
@@ -22,12 +22,12 @@
                     $this->dateConso = $args[2];
                     $this->idEnfant = $args[3];
                     $this->idProduit = $args[4];
-                    $result2 = mysqli_query($co,"SELECT * FROM enfant WHERE idEnfant = '$this->idEnfant'") or die("Erreur lors de la requete de recherche de l'enfant");
+                    $result2 = mysqli_query($co,"SELECT * FROM Enfant WHERE idEnfant = '$this->idEnfant'") or die("Erreur lors de la requete de recherche de l'enfant");
                     while ($row = mysqli_fetch_assoc($result2)) {
                         $this->prenomEnfant = $row['prenom'];
                         $this->nomEnfant = $row['nom'];
                     }
-                    $result2 = mysqli_query($co,"SELECT * FROM produit WHERE idProduit = '$this->idProduit'") or die("Erreur lors de la requete de recherche du produit");
+                    $result2 = mysqli_query($co,"SELECT * FROM Produit WHERE idProduit = '$this->idProduit'") or die("Erreur lors de la requete de recherche du produit");
                     while ($row = mysqli_fetch_assoc($result2)) {
                         $this->nomProduit = $row['libelle'];
                     }
@@ -38,13 +38,13 @@
                     $this->dateConso = $args[1];
                     $this->idEnfant = $args[2];
                     $this->idProduit = $args[3];
-                    $result2 = mysqli_query($co,"SELECT * FROM enfant WHERE idEnfant = '$this->idEnfant'") or die("Erreur lors de la requete de recherche du membre");
+                    $result2 = mysqli_query($co,"SELECT * FROM Enfant WHERE idEnfant = '$this->idEnfant'") or die("Erreur lors de la requete de recherche du membre");
                     while ($row = mysqli_fetch_assoc($result2)) {
                         $this->prenomEnfant = $row['prenom'];
                         $this->nomEnfant = $row['nom'];
                     }
                     break;
-                    $result2 = mysqli_query($co,"SELECT * FROM produit WHERE idProduit = '$this->idProduit'") or die("Erreur lors de la requete de recherche du produit");
+                    $result2 = mysqli_query($co,"SELECT * FROM Produit WHERE idProduit = '$this->idProduit'") or die("Erreur lors de la requete de recherche du produit");
                     while ($row = mysqli_fetch_assoc($result2)) {
                         $this->nomProduit = $row['libelle'];
                     }
