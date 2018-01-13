@@ -18,7 +18,7 @@
     <div class="container">
       <div class="jumbotron">
         <h1 class="display-3">Courses</h1>
-        <p>Courses faites par les parents pour l association: </p>
+        <p>Courses faites par les parents pour l'association.</p>
       </div>
     </div>
     <div class="container">

@@ -1,4 +1,4 @@
-<?php 
+<?php
     require_once("../Controleur/Controleur_affichage_commun.php");
     require_once("../Modele/connect.php");
     require_once("../Modele/produit.php");
@@ -12,14 +12,14 @@
         }
         $_SESSION['modifProduit']=$produit;
     }
-    
-    
+
+
     ?>
     <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Ptut</title>
+        <title>Modifier produit</title>
         <!-- css -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">

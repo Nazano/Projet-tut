@@ -19,7 +19,7 @@
     <div class="container">
       <div class="jumbotron">
         <h1 class="display-3">Consommations</h1>
-        <p>Consulter la liste des consommations</p>
+        <p>Consulter la liste des consommations.</p>
       </div>
     </div>
     <div class="container">
@@ -47,7 +47,7 @@
 
       }
       ?>
-          
+
     </div>
   </body>
 </html>
