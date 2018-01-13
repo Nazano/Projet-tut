@@ -6,14 +6,14 @@ require_once("../Modele/parent.php");
 session_start();
 
 function display_Courses() {
+    include("../Modele/connect.php");
     $user = $_SESSION['user'];
-    $co = mysqli_connect("localhost","root","","Projet_tut") or die("Erreur de connexion");
     if ($user->getRank()==1) {
-        $requete = "SELECT * FROM achat";
+        $requete = "SELECT * FROM Achat";
     }
     else {
         $id =$user->getID();
-        $requete = "Select * from achat where idParent = '$id'";
+        $requete = "Select * from Achat where idParent = '$id'";
     }
     $result = mysqli_query($co,$requete) or die("Echec de la requete pour récupérer les course !");
 
