@@ -6,8 +6,8 @@ require_once("../Modele/parent.php");
 session_start();
 
 function display_Consommations() {
+    include("../Modele/connect.php");
     $user = $_SESSION['user'];
-    $co = mysqli_connect("localhost","root","","Projet_tut") or die("Erreur de connexion");
     if ($user->getRank()==1 || $user->getRank()==2) {
         $requete = "SELECT * FROM Consommation";
         $result = mysqli_query($co,"select * from Consommation") or die("Echec de la requete pour récupérer les course !");
