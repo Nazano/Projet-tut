@@ -42,12 +42,12 @@
               <th scope="prenom">Prénom</th>
               <th scope="email">Email</th>
               <th scope="tel">Téléphone</th>
-              <th scope="login">Identifiant</th>
-              <th scope="password">Mot de passe</th>
+              <th scope="login">Modifier</th>
+              <th scope="password">Supprimer</th>
             </tr>
         </thead>
         <tbody>
-          <!-- Contenu du tableau -->
+          <?php require_once("../Controleur/controleur_parents"); display_Parents(); ?>
         </tbody>
       </table>
     </div>
