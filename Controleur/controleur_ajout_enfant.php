@@ -14,7 +14,7 @@ if(isset(($_POST["prenom"])) and isset($_POST["nom"]) and isset($_POST["birthday
   $query = "SELECT idCompte FROM est_l_enfant_de NATURAL JOIN Enfant WHERE idParent = '$id'";
   $result = mysqli_query($co,$query);
   if(mysqli_num_rows($result) == 0) {
-    $nomCompte = "Compte de" . $prenom;
+    $nomCompte = "Compte de " . $prenom;
     $query2 = "INSERT INTO Compte(nomCompte,solde) VALUES ('$nomCompte',0.00)";
     $result2 = mysqli_query($co,$query2);
     $var = mysqli_fetch_assoc(mysqli_query($co,"SELECT MAX(idCompte) FROM Compte"));

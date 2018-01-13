@@ -265,6 +265,8 @@ BEGIN
     ELSE
         DELETE FROM Enfant
         WHERE idEnfant = idE ;
+	DELETE FROM Compte
+	WHERE idCompte = idCompteE;
     END IF ;
 END|
  
