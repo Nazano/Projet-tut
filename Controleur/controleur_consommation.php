@@ -9,8 +9,8 @@ function display_Consommations() {
     $user = $_SESSION['user'];
     $co = mysqli_connect("localhost","root","","Projet_tut") or die("Erreur de connexion");
     if ($user->getRank()==1 || $user->getRank()==2) {
-        $requete = "SELECT * FROM consommation";
-        $result = mysqli_query($co,"select * from consommation") or die("Echec de la requete pour récupérer les course !");
+        $requete = "SELECT * FROM Consommation";
+        $result = mysqli_query($co,"select * from Consommation") or die("Echec de la requete pour récupérer les course !");
 
         $cpt=0;
         $consommations = array();
@@ -31,7 +31,7 @@ function display_Consommations() {
 
                 <?php
                 $idProd = $C->getIdProduit();
-                $result = mysqli_query($co, "select * from produit where idProduit = '$idProd'") or die("echec de la recherche du produit");
+                $result = mysqli_query($co, "select * from Produit where idProduit = '$idProd'") or die("echec de la recherche du produit");
                 while ($row = mysqli_fetch_assoc($result)) {
                     $prix = $row['prix'];
                 }
@@ -49,7 +49,7 @@ function display_Consommations() {
     }
     else {
         $id =$user->getID();
-        $requete = "Select * from achat where idParent = '$id'";
+        $requete = "Select * from Achat where idParent = '$id'";
         $result = mysqli_query($co,"select * from est_l_enfant_de where idParent='$id'") or die("Echec de la requete pour récupérer les enfants !");
         $cpt=0;
         $enfant = array();
@@ -61,7 +61,7 @@ function display_Consommations() {
         foreach($enfant as $idEnfant) {
             $cpt2=0;
 
-            $result = mysqli_query($co,"select * from consommation where idEnfant='$idEnfant'") or die("Echec de la requete pour récupérer les consommations !");
+            $result = mysqli_query($co,"select * from Consommation where idEnfant='$idEnfant'") or die("Echec de la requete pour récupérer les consommations !");
             while($row = mysqli_fetch_assoc($result)) {
                 $consommations[$cpt] = new consommation($row['idConso'],$row['qteConso'],$row['dateConso'],$row['idEnfant'],$row['idProduit']);
                 $cpt2 = $cpt2+1;
@@ -79,7 +79,7 @@ function display_Consommations() {
                     <td> <?php echo $C->getNomProduit(); ?> </td>
                     <?php
                     $idProd = $C->getIdProduit();
-                    $result = mysqli_query($co, "select * from produit where idProduit = '$idProd'") or die("echec de la recherche du produit");
+                    $result = mysqli_query($co, "select * from Produit where idProduit = '$idProd'") or die("echec de la recherche du produit");
                     while ($row = mysqli_fetch_assoc($result)) {
                         $prix = $row['prix'];
                     }
