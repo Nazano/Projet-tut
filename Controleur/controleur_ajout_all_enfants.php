@@ -2,14 +2,20 @@
 require_once("../Modele/connect.php");
 require_once("../Modele/user.php");
 require_once("../Modele/clean.php");
-session_start();
 
-if(isset(($_POST["prenom"])) and isset($_POST["nom"]) and isset($_POST["birthday"])) {
+if(isset(($_POST["prenom"])) and isset($_POST["nom"]) and isset($_POST["birthday"]) and isset($_POST["parent"])) {
   $prenom = clean_input($_POST["prenom"]);
   $nom = clean_input($_POST["nom"]);
   $date = clean_input($_POST["birthday"]);
-  $user = $_SESSION['user'];
-  $id = $user->getID();
+  $parent = clean_input($_POST["parent"]);
+
+  echo $parent;
+  $nomPrenom = explode(" ",$parent);
+  $queryID = "SELECT idParent FROM Parent WHERE nom = '$nomPrenom[1]' AND prenom ='$nomPrenom[0]'";
+  $resultID = mysqli_query($co,$queryID);
+  $var = mysqli_fetch_assoc($resultID);
+  $id = $var['idParent'];
+
 
   $query = "SELECT idCompte FROM est_l_enfant_de NATURAL JOIN Enfant WHERE idParent = '$id'";
   $result = mysqli_query($co,$query);
@@ -38,5 +44,17 @@ if(isset(($_POST["prenom"])) and isset($_POST["nom"]) and isset($_POST["birthday
   $result5 = mysqli_query($co,$query5);
 
   header("Location:../Vue/index.php");
+}
+
+function display_parents() {
+  include('../Modele/connect.php');
+  $queryP = "SELECT prenom, nom FROM Parent";
+  $resultP = mysqli_query($co,$queryP);
+  echo "<select name = 'parent' form = 'ajout'>";
+  while($row = mysqli_fetch_assoc($resultP)) {
+    $value = $row['prenom'] . ' ' . $row['nom'];
+    echo "<option value=' $value'>$value</option>";
+  }
+  echo "</select>";
 }
 ?>
