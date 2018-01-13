@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Enfants</title>
+    <title>Mes Enfants</title>
     <!-- css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -14,8 +14,8 @@
     <!-- fin header -->
     <div class="container">
       <div class="jumbotron">
-        <h1 class="display-3">Enfants</h1>
-        <p>Consulter la liste des enfants</p>
+        <h1 class="display-3">Mes Enfants</h1>
+        <p>Consulter la liste de vos enfants.</p>
       </div>
     </div>
     <div class="container">
@@ -34,7 +34,8 @@
           <?php display_Enfants(); ?>
         </tbody>
       </table>
-      <button type="button" name="button" onclick="location.href='ajout_enfant.php'">Ajouter un enfant</button>
+      <button type="button" name="button" class="btn btn-primary" onclick="location.href='ajout_enfant.php'">Ajouter un enfant</button>
+      <button type="button" name="button" class="btn btn-primary" onclick="location.href='ajout_argent.php'">Ajouter de l'argent</button>
     </div>
   </body>
 </html>

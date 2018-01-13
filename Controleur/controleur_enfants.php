@@ -10,7 +10,7 @@ function display_Enfants() {
       <td> <?php echo $row['prenom']; ?> </td>
       <td> <?php echo $row['dateNaissance']; ?> </td>
       <td> <?php echo $row['solde'] . " €"; ?> </td>
-      <td> <button type="button" class="btn btn-info">Modifier</button> </td>
+      <td> <button type="button" class="btn btn-info" onclick= <?php $enfant = $row['idEnfant']; echo "location.href='../Vue/modifier_enfant.php?id=$enfant'";?> >Modifier</button> </td>
       <td> <button type="button" class="btn btn-info">Supprimer</button> </td>
     </tr>
   <?php
@@ -27,7 +27,7 @@ function display_All_Enfants() {
       <td> <?php echo $row['prenom']; ?> </td>
       <td> <?php echo $row['dateNaissance']; ?> </td>
       <td> <?php echo $row['solde'] . " €"; ?> </td>
-      <td> <button type="button" class="btn btn-info">Modifier</button> </td>
+      <td> <button type="button" class="btn btn-info" onclick= <?php $enfant = $row['idEnfant']; echo "location.href='../Vue/modifier_enfant.php?id=$enfant'";?> >Modifier</button> </td>
       <td> <button type="button" class="btn btn-info">Supprimer</button> </td>
     </tr>
   <?php
