@@ -1,6 +1,6 @@
 <?php
 #require("../Modele/connect.php");
-require_once("../Modele/Consommation.php");
+require_once("../Modele/consommation.php");
 require_once("../Modele/user.php");
 require_once("../Modele/parent.php");
 session_start();
@@ -11,7 +11,7 @@ function display_Consommations() {
     if ($user->getRank()==1 || $user->getRank()==2) {
         $requete = "SELECT * FROM consommation";
         $result = mysqli_query($co,"select * from consommation") or die("Echec de la requete pour récupérer les course !");
-    
+
         $cpt=0;
         $consommations = array();
         while($row = mysqli_fetch_assoc($result)) {
@@ -20,7 +20,7 @@ function display_Consommations() {
         }
 
         foreach ($consommations as $C) {
-            
+
         ?>
             <p>
                 <tr>
@@ -28,8 +28,8 @@ function display_Consommations() {
                 <td> <?php echo $C->getPrenomEnfant(); ?> </td>
                 <td> <?php echo $C->getDateConso(); ?> </td>
                 <td> <?php echo $C->getNomProduit(); ?> </td>
-                
-                <?php 
+
+                <?php
                 $idProd = $C->getIdProduit();
                 $result = mysqli_query($co, "select * from produit where idProduit = '$idProd'") or die("echec de la recherche du produit");
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -60,7 +60,7 @@ function display_Consommations() {
         $consommations = array();
         foreach($enfant as $idEnfant) {
             $cpt2=0;
-            
+
             $result = mysqli_query($co,"select * from consommation where idEnfant='$idEnfant'") or die("Echec de la requete pour récupérer les consommations !");
             while($row = mysqli_fetch_assoc($result)) {
                 $consommations[$cpt] = new consommation($row['idConso'],$row['qteConso'],$row['dateConso'],$row['idEnfant'],$row['idProduit']);
@@ -69,7 +69,7 @@ function display_Consommations() {
         }
 
         foreach ($consommations as $C) {
-        
+
             ?>
                 <p>
                     <tr>
@@ -77,7 +77,7 @@ function display_Consommations() {
                     <td> <?php echo $C->getPrenomEnfant(); ?> </td>
                     <td> <?php echo $C->getDateConso(); ?> </td>
                     <td> <?php echo $C->getNomProduit(); ?> </td>
-                    <?php 
+                    <?php
                     $idProd = $C->getIdProduit();
                     $result = mysqli_query($co, "select * from produit where idProduit = '$idProd'") or die("echec de la recherche du produit");
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -88,9 +88,9 @@ function display_Consommations() {
 
                     <td> <?php echo $C->getQteConso(); ?> </td>
                     <td> <?php echo $valeur; ?> </td>
-        
+
                     <?php } ?>
-        
+
                     </tr>
                 </p>
             <?php
@@ -98,4 +98,3 @@ function display_Consommations() {
         }
 
 ?>
-

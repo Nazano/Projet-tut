@@ -30,7 +30,7 @@ DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Enfant(nomE VARCHAR(20), pr
 BEGIN
     DECLARE idCat INT;
     SET idCat = calculer_Categorie(dateNaissanceE);
-    INSERT INTO ENFANT VALUES(NULL, nomE, prenomE, dateNaissanceE, idCat, idCompteE);
+    INSERT INTO Enfant VALUES(NULL, nomE, prenomE, dateNaissanceE, idCat, idCompteE);
 END |
  
  

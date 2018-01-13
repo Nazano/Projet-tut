@@ -246,7 +246,7 @@ DELIMITER | CREATE OR REPLACE PROCEDURE creer_Compte_Enfant(prenomE VARCHAR(20),
 BEGIN
     DECLARE idCat INT;
     SET idCat = calculer_Categorie(dateNaissanceE);
-    INSERT INTO ENFANT(nom, prenom, dateNaissance, idCategorie, idCompte) VALUES(nomE, prenomE, dateNaissanceE, idCat, idCompteE);
+    INSERT INTO Enfant(nom, prenom, dateNaissance, idCategorie, idCompte) VALUES(nomE, prenomE, dateNaissanceE, idCat, idCompteE);
 END |
  
  
@@ -338,68 +338,89 @@ BEGIN
     RETURN nbParents ;
 END|
  
-DELIMITER | CREATE OR REPLACE PROCEDURE ajouter_consommation(
-    IN nomProduit VARCHAR(10),
-    IN idEnfant2 Int,
-    IN qte Float)
+DELIMITER | CREATE OR REPLACE  PROCEDURE creer_Course(libelleP VARCHAR(30), quantite FLOAT, dateA DATE, prixA FLOAT, idPa INT)
 BEGIN
-    DECLARE idProduitTo INT;
-    DECLARE qteProduit Float;
-    DECLARE diff Float;
-    DECLARE diffSolde Float;
-    DECLARE prixAPayer Float;
-    DECLARE idCompteEnfant INT;
-    DECLARE soldeRestant Float;
+    DECLARE
+        produitExistant INT ; DECLARE idProd INT ; DECLARE prixU FLOAT ; DECLARE qteNew FLOAT ; DECLARE qteOld FLOAT ; DECLARE oldStock FLOAT ; DECLARE newStock FLOAT ;
+        /* Check si le produit est dÈj‡ dans la BD */
+    SELECT
+        COUNT(*)
+    INTO produitExistant
+FROM
+    Produit
+WHERE
+    libelle = libelleP ; IF(produitExistant = 1) THEN
+    /*Recuperer l'ID du produit */
+SELECT
+    idProduit
+INTO idProd
+FROM
+    Produit
+WHERE
+    libelle = libelleP ;
+    /* INSERT dans la table Achat */
+INSERT INTO Achat(
+    qteAchete,
+    dateAchat,
+    prix,
+    idParent,
+    idProduit
+)
+VALUES(
+    quantite,
+    dateA,
+    prixA,
+    idPa,
+    idProd
+) ;
+/* hausse du stock*/
+/*SELECT stock into qteOld
+        from produit
+        where idProduit = idProd;
 
-    /*on stock l'id du produit correspondant au texte donné*/
-    SELECT idProduit INTO idProduitTo
-    FROM produit p
-    WHERE p.libelle = nomProduit ;
+        SELECT prix into prixU
+        from produit
+        where idProduit = idProd;
 
-    /* on stock la qte de produit disponible*/
-    SELECT stock INTO qteProduit
-    FROM produit p
-    WHERE p.idProduit = idProduitTo ;
-
-    /* On trouve l'id du compte associé à l'enfant*/
-        SELECT idCompte into idCompteEnfant
-        FROM enfant
-        WHERE idEnfant = idEnfant2;
-
-    /* On trouve le solde restant de l'enfant*/
-        SELECT solde into soldeRestant
-        FROM compte
-        WHERE idCompte = idCompteEnfant;
-
-    /* On trouve le prix pour une quantité de 1*/
-    SELECT prix into prixAPayer
-        FROM produit
-        WHERE idProduit = idProduitTo;
-
-    SET
-        prixAPayer = qte*prixAPayer ;
-    SET
-        diff = qteProduit - qte ;
-    SET
-        diffSolde = soldeRestant - prixAPayer ;
-    
-    IF diff >= 0 && diffSolde >= 0 THEN
-        /* ajout de la ligne dans la table consommation */
-        INSERT INTO consommation(dateConso,idEnfant,idProduit,qteConso )
-        VALUES(CURRENT_DATE(),idEnfant2,idProduitTo,qte );
-
-        /*décompte du solde du compte de l'enfant*/
-        UPDATE Compte Set Solde = soldeRestant - prixAPayer where idCompte=idCompteEnfant;
-
-        /*décompte de la quantite du produit*/
-        UPDATE Produit Set stock = qteProduit-qte where idProduit=idProduitTo;
-    ELSEIF diff <0 THEN 
-        SELECT 'Il n y a pas assez de ce produit pour en consommer autant' ;
-    ELSEIF diffSolde <0 THEN
-        SELECT  'Pas assez d argent sur le compte';
-    ELSE 
-        SELECT 'Erreur lors de l execution de la procedure';
+        SET qteNew = qteOld+quantite;
+        modifier_Produit(idp,prixU,qteNew,libelleP);*/
+ELSE
+SET
+    prixU = prixA / quantite ;
+INSERT INTO Produit(Prix, Stock, libelle)
+VALUES(prixU, quantite, libelleP) ;
+SET
+    idProd = LAST_INSERT_ID() ;
+INSERT INTO Achat(
+    qteAchete,
+    dateAchat,
+    prix,
+    idParent,
+    idProduit
+)
+VALUES(
+    quantite,
+    dateA,
+    prixA,
+    idPa,
+    idProd
+) ;
     END IF ;
+SELECT
+    stock
+INTO oldStock
+FROM
+    Produit
+WHERE
+    idProduit = idProd ;
+SET
+    newStock = oldStock + quantite ;
+UPDATE
+    produit
+SET
+    stock = newStock
+WHERE
+    idProduit = idProd ;
 END |
 
 DELIMITER | CREATE OR REPLACE PROCEDURE ajouter_solde(idCompte2 INT, soldeToAdd FLOAT)
@@ -535,6 +556,35 @@ BEGIN
     /*décompte de la quantite du produit*/
     UPDATE Produit Set stock = qteConso2+qteConso2 where idProduit=idProduit2;
 END|
+
+
+DELIMITER | CREATE OR REPLACE PROCEDURE creer_Course(libelleP VARCHAR(30), quantite INT, dateP DATE, prixA FLOAT) 
+BEGIN
+	DECLARE produitExistant INT;
+	DECLARE idProd INT;
+	DECLARE prixU INT;
+	/* Check si le produit est déjà dans la BD */
+	SELECT COUNT(*) INTO produitExistant
+	FROM Produit
+	WHERE libelle = libelleP;
+
+	/* S'il l'est déjà */
+	IF (produitExistant = 1) THEN
+		/*Recupérer l'ID du produit */
+		SELECT idProduit INTO idProd
+        FROM Produit
+		WHERE libelle = libelleP;
+		/* INSERT dans la table Achat */
+		INSERT INTO Achat (qteAchete,dateAchat,prix,idParent,idProduit) VALUES (quantite,dateP,prixA,idP,idProd);
+        /*Sinon ... */
+	ELSE
+		SET prixU = prixA/quantite;
+		INSERT INTO Produit (Prix,Stock,libellé) VALUES (prixU,quantite,libelleP);
+		SET idProd = LAST_INSERT_ID();
+		INSERT INTO Achat (qteAchete,dateAchat,prix,idParent,idProduit) VALUES (quantite,dateP,prixA,idP,idProd);
+	END IF;
+END|
+
 
 DELIMITER | CREATE OR REPLACE PROCEDURE reset_BD()
 BEGIN
