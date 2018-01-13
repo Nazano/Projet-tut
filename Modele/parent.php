@@ -1,5 +1,5 @@
 <?php
-    
+
     class Adulte
     {
         private $id;
@@ -23,7 +23,7 @@
                     $this->pwd = $args[3];
                     $this->mail = $args[4];
                     $this->tel = $args[5];
-                    $result2 = mysqli_query($co,"SELECT * FROM parent WHERE id = '$this->username' AND psswd = '$this->pwd'") or die("Erreur lors de la requete de recherche du membre");
+                    $result2 = mysqli_query($co,"SELECT * FROM Parent WHERE id = '$this->username' AND psswd = '$this->pwd'") or die("Erreur lors de la requete de recherche du membre");
                     while ($row = mysqli_fetch_assoc($result2)) {
                         $this->id = $row["idParent"];
                         $this->rank = $row["idStatut"];

@@ -1,7 +1,7 @@
 <?php
 
     class Produit
-    {   
+    {
         private $idProduit;
         private $prix;
         private $stock;
@@ -24,7 +24,7 @@
                     $this->stock = $args[1];
                     $this->libelle = $args[2];
                     $result = mysqli_query($co,"call ajouter_produit($this->prix,0,$this->libelle") or die("Erreur lors de la requete de recherche du membre");
-                    $result2 = mysqli_query($co,"SELECT * FROM produit where libelle = '$this->libelle' and prix = '$this->prix' and stock = 0 ") or die("Echec pour trouver l'id du produit créé");
+                    $result2 = mysqli_query($co,"SELECT * FROM Produit where libelle = '$this->libelle' and prix = '$this->prix' and stock = 0 ") or die("Echec pour trouver l'id du produit créé");
                     while ($row = mysqli_fetch_assoc($result)) {
                         $this->idProduit = $row["idProduit"];
                     }
@@ -40,12 +40,7 @@
             $_SESSION['user']=$this;
             setcookie("ID",$this->id,time()+86400);
         }
-
-        public function modif_mdp($mdp) {
-            $result = mysqli_querry($this->co,"UPDATE membres set mdpasse=$mdp where id='$this->id'; ") or die("Erreur lors du changement de mdp");
-            $this->psswd = $mdp;
-            $_SESSION['user']=$this;
-        }
+        
         public function getID() {
             return $this->idProduit;
         }
