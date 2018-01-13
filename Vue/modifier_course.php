@@ -88,7 +88,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Date :</span>
                 </div>
-                <input type="text" class="form-control" name="date"  required="" value="<?php if (isset($_GET['id'])) {echo $course->getDAteAchat(); } else { echo "";}?>" />
+                <input type="date" class="form-control" name="date"  required="" value="<?php if (isset($_GET['id'])) {echo $course->getDAteAchat(); } else { echo "";}?>" />
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">

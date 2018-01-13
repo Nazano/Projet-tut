@@ -10,10 +10,10 @@
         $newProd = clean_input($_POST['produit']);
         $newQte = clean_input($_POST['quantite']);
     }
-    $result = mysqli_query($co,"select * from produit where idProduit= '$newProd'") or die("Eche de la requete pour trouver le nom du produit");
+    $result = mysqli_query($co,"select * from produit where idProduit= '$newProd'") or die("Echec de la requete pour trouver le nom du produit");
     while ($row=mysqli_fetch_assoc($result)) {
         $nom = $row['libelle'];
     }
-    $result = mysqli_query($co,"CALL creer_course('$nom','$newQte','$newDate','$newPrix','$newPar')") or die("echec de l'ajout du produit");
+    $result = mysqli_query($co,"CALL creer_course('$nom','$newQte','$newDate','$newPrix','$newPar')") or die("Echec de l'ajout de la course : " . mysqli_error($co));
     header('Location: ../Vue/courses.php');
 ?>

@@ -1,4 +1,4 @@
-<?php include "../Controleur/controleur_menu.php"; ?>
+<?php include "../Controleur/controleur_menu.php"; include "../Controleur/controleur_affichage_commun.php";?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,23 +10,7 @@
   </head>
   <body>
     <!-- Header -->
-    <div class="container-fluid" style="background-color: #A9F5A9;">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col">
-              <h1>APERO</h1>
-          </div>
-          <div class="col">
-            <span class="float-right">
-              <button type="button" class="btn btn-outline-dark" onclick="location.href='../Controleur/deconnexion.php'">Deconnexion</button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <h3><?php afficher_nom(); ?></h3>
-    </div>
+    <?php afficher_header(); ?>
     <!-- fin header -->
     <div class="container">
       <div class="jumbotron">
