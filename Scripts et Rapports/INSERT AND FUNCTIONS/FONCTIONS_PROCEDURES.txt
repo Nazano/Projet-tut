@@ -122,6 +122,91 @@ BEGIN
     RETURN nbParents ;
 END|
 
+DELIMITER | CREATE OR REPLACE  PROCEDURE creer_Course(libelleP VARCHAR(30), quantite FLOAT, dateA DATE, prixA FLOAT, idPa INT)
+BEGIN
+    DECLARE
+        produitExistant INT ; DECLARE idProd INT ; DECLARE prixU FLOAT ; DECLARE qteNew FLOAT ; DECLARE qteOld FLOAT ; DECLARE oldStock FLOAT ; DECLARE newStock FLOAT ;
+        /* Check si le produit est d»já dans la BD */
+    SELECT
+        COUNT(*)
+    INTO produitExistant
+FROM
+    Produit
+WHERE
+    libelle = libelleP ; IF(produitExistant = 1) THEN
+    /*Recuperer l'ID du produit */
+SELECT
+    idProduit
+INTO idProd
+FROM
+    Produit
+WHERE
+    libelle = libelleP ;
+    /* INSERT dans la table Achat */
+INSERT INTO Achat(
+    qteAchete,
+    dateAchat,
+    prix,
+    idParent,
+    idProduit
+)
+VALUES(
+    quantite,
+    dateA,
+    prixA,
+    idPa,
+    idProd
+) ;
+/* hausse du stock*/
+/*SELECT stock into qteOld
+        from produit
+        where idProduit = idProd;
+
+        SELECT prix into prixU
+        from produit
+        where idProduit = idProd;
+
+        SET qteNew = qteOld+quantite;
+        modifier_Produit(idp,prixU,qteNew,libelleP);*/
+ELSE
+SET
+    prixU = prixA / quantite ;
+INSERT INTO Produit(Prix, Stock, libelle)
+VALUES(prixU, quantite, libelleP) ;
+SET
+    idProd = LAST_INSERT_ID() ;
+INSERT INTO Achat(
+    qteAchete,
+    dateAchat,
+    prix,
+    idParent,
+    idProduit
+)
+VALUES(
+    quantite,
+    dateA,
+    prixA,
+    idPa,
+    idProd
+) ;
+    END IF ;
+SELECT
+    stock
+INTO oldStock
+FROM
+    Produit
+WHERE
+    idProduit = idProd ;
+SET
+    newStock = oldStock + quantite ;
+UPDATE
+    produit
+SET
+    stock = newStock
+WHERE
+    idProduit = idProd ;
+END |
+
 DELIMITER | CREATE OR REPLACE PROCEDURE ajouter_solde(idCompte2 INT, soldeToAdd FLOAT)
 BEGIN 
     DECLARE oldSolde FLOAT;
@@ -320,6 +405,8 @@ BEGIN
         SELECT 'Erreur lors de l execution de la procedure';
     END IF ;
 END |
+
+
 
 
 DELIMITER | CREATE OR REPLACE PROCEDURE reset_BD()

@@ -557,35 +557,6 @@ BEGIN
     UPDATE Produit Set stock = qteConso2+qteConso2 where idProduit=idProduit2;
 END|
 
-
-DELIMITER | CREATE OR REPLACE PROCEDURE creer_Course(libelleP VARCHAR(30), quantite INT, dateP DATE, prixA FLOAT) 
-BEGIN
-	DECLARE produitExistant INT;
-	DECLARE idProd INT;
-	DECLARE prixU INT;
-	/* Check si le produit est déjà dans la BD */
-	SELECT COUNT(*) INTO produitExistant
-	FROM Produit
-	WHERE libelle = libelleP;
-
-	/* S'il l'est déjà */
-	IF (produitExistant = 1) THEN
-		/*Recupérer l'ID du produit */
-		SELECT idProduit INTO idProd
-        FROM Produit
-		WHERE libelle = libelleP;
-		/* INSERT dans la table Achat */
-		INSERT INTO Achat (qteAchete,dateAchat,prix,idParent,idProduit) VALUES (quantite,dateP,prixA,idP,idProd);
-        /*Sinon ... */
-	ELSE
-		SET prixU = prixA/quantite;
-		INSERT INTO Produit (Prix,Stock,libellé) VALUES (prixU,quantite,libelleP);
-		SET idProd = LAST_INSERT_ID();
-		INSERT INTO Achat (qteAchete,dateAchat,prix,idParent,idProduit) VALUES (quantite,dateP,prixA,idP,idProd);
-	END IF;
-END|
-
-
 DELIMITER | CREATE OR REPLACE PROCEDURE reset_BD()
 BEGIN
     /* REMETTRE A 0 LES CONSOMMATIONS ET LES ACHATS */
