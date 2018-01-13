@@ -47,7 +47,7 @@
             </tr>
         </thead>
         <tbody>
-          <?php require_once("../Controleur/controleur_parents"); display_Parents(); ?>
+          <?php require_once("../Controleur/controleur_parents.php"); display_Parents(); ?>
         </tbody>
       </table>
     </div>

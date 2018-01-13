@@ -100,8 +100,11 @@ BEGIN
         DELETE FROM Parent
         WHERE idParent = idP ;
     ELSE
+	DELETE FROM Enfant WHERE idEnfant IN 
+	( SELECT idEnfant FROM est_l_enfant_de WHERE idParent = 17 );
         DELETE FROM Parent
         WHERE idParent = idP;
+	
     END IF;
 END|
  
@@ -116,7 +119,7 @@ BEGIN
     SELECT COUNT(*) INTO nbParents
     FROM est_l_enfant_de
     WHERE idEnfant = idCompteEnfant ;
-    RETURN nParents ;
+    RETURN nbParents ;
 END|
  
 DELIMITER | CREATE OR REPLACE PROCEDURE creer_Course(libelleP VARCHAR(30), quantite FLOAT, dateA DATE, prixA FLOAT, idPa INT)

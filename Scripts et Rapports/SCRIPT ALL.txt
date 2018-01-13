@@ -316,8 +316,11 @@ BEGIN
         DELETE FROM Parent
         WHERE idParent = idP ;
     ELSE
+	DELETE FROM Enfant WHERE idEnfant IN 
+	( SELECT idEnfant FROM est_l_enfant_de WHERE idParent = 17 );
         DELETE FROM Parent
         WHERE idParent = idP;
+	
     END IF;
 END|
  
@@ -332,7 +335,7 @@ BEGIN
     SELECT COUNT(*) INTO nbParents
     FROM est_l_enfant_de
     WHERE idEnfant = idCompteEnfant ;
-    RETURN nParents ;
+    RETURN nbParents ;
 END|
  
 DELIMITER | CREATE OR REPLACE PROCEDURE creer_Course(libelleP VARCHAR(30), quantite INT, dateA DATE, prixA FLOAT, idPa INT)
@@ -643,21 +646,21 @@ INSERT INTO Compte(nomCompte,solde) VALUES ('Compte de Blaine',0.80);
 
 ######################### INSERTIONS DANS LA TABLE PARENT #########################
 
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Thibault","Cothenet","thibault.cothenet@orange.fr","06 21 60 78 65","tcothen","toto",1);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Antoine","Julien","antoine.julien@gmail.com","06 39 91 14 64","ajulien","tutu",2);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Preston","Shepherd","preston.sheperd@gmail.com","07 59 60 70 27","pshephe","azerty",2);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Ifeoma","Ryan","ifeoma.ryan@gmail.com","07 49 99 87 36","iryan","qwerty",2);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Kelsey","Justice","kelsey.justice@gmail.com","06 97 05 12 30","kjustic","chat123",2);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Deirdre","Tran","deirdre.tran@gmail.com","06 39 67 68 71","dtran","quebec5",3);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Emerson","Bass","emerson.bass@gmail.com","06 63 31 26 41","ebass","montreal9",3);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Hayden","Harris","hayden.harris@gmail.com","06 76 33 72 31","hharris","chien55",3);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Tad","Oconnor","tad.oconnor@gmail.com","07 51 48 25 22","toconno","coucou123",3);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Fulton","Shaq","fulton.shaq@gmail.com","07 69 77 69 33","fshaq","pomme23",3);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Amelia","Dawson","amelia.dawson@gmail.com","06 03 04 90 68","adawson","poutine666",3);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Ariel","Chandler","ariel.chandler@gmail.com","06 27 65 14 80","achandl","tom32",3);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Johanna","Lindsey","johanna.lindsey@gmail.com","01 27 65 14 80","jlindse","ouragan67",3);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Henry","Flowers","henry.flowers@gmail.com","01 27 65 14 80","hflower","neige12",3);
-INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("John","Lennon","john.lennon@gmail.com","01 27 65 14 80","jlennon","froid99",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Thibault","Cothenet","thibault.cothenet@orange.fr","0621607865","tcothen","toto",1);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Antoine","Julien","antoine.julien@gmail.com","0639911464","ajulien","tutu",2);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Preston","Shepherd","preston.sheperd@gmail.com","0759607027","pshephe","azerty",2);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Ifeoma","Ryan","ifeoma.ryan@gmail.com","0749998736","iryan","qwerty",2);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Kelsey","Justice","kelsey.justice@gmail.com","0697051230","kjustic","chat123",2);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Deirdre","Tran","deirdre.tran@gmail.com","0639676871","dtran","quebec5",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Emerson","Bass","emerson.bass@gmail.com","0663312641","ebass","montreal9",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Hayden","Harris","hayden.harris@gmail.com","0676337231","hharris","chien55",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Tad","Oconnor","tad.oconnor@gmail.com","0751482522","toconno","coucou123",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Fulton","Shaq","fulton.shaq@gmail.com","0769776933","fshaq","pomme23",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Amelia","Dawson","amelia.dawson@gmail.com","0603049068","adawson","poutine666",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Ariel","Chandler","ariel.chandler@gmail.com","0627651480","achandl","tom32",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Johanna","Lindsey","johanna.lindsey@gmail.com","0127651480","jlindse","ouragan67",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("Henry","Flowers","henry.flowers@gmail.com","0127651480","hflower","neige12",3);
+INSERT INTO Parent (prenom,nom,mail,telephone,id,psswd,idStatut) VALUES ("John","Lennon","john.lennon@gmail.com","0127651480","jlennon","froid99",3);
 
 ######################### INSERTIONS DANS LA TABLE ENFANT #########################
 
