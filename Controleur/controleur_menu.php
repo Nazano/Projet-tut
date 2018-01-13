@@ -112,11 +112,6 @@ function afficher_parent(){
   <button type="button" class="btn btn-primary" onclick="location.href=\'produits.php\'">Voir produits</button>
 </div>
 <div class="col-lg-4 col-md-6 jumbotron ma">
-  <h1>Solde</h1>
-  <p>Permet de consulter votre solde.</p>
-  <button type="button" class="btn btn-primary" onclick="location.href=\'solde.php\'">Voir solde</button>
-</div>
-<div class="col-lg-4 col-md-6 jumbotron ma">
   <h1>Consommations</h1>
   <p>Consulter la liste des consommations.</p>
   <button type="button" class="btn btn-primary" onclick="location.href=\'consommation.php\'">Voir consommations</button>
