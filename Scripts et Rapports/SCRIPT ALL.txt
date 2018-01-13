@@ -727,17 +727,17 @@ INSERT INTO est_l_enfant_de(idParent,idEnfant) VALUES (15,20);
 
 ######################### INSERTIONS DANS LA TABLE PRODUIT #########################
 
-INSERT INTO Produit(prix,stock,libelle) VALUES(0.70, 100, 'croissant');
+INSERT INTO Produit(prix,stock,libelle) VALUES(0.70, 100, 'Croissant');
 
-INSERT INTO Produit(prix,stock,libelle) VALUES(2.80, 150, 'nutella');
+INSERT INTO Produit(prix,stock,libelle) VALUES(2.80, 150, 'Nutella');
 
-INSERT INTO Produit(prix,stock,libelle) VALUES(3.10, 30,  'brioche');
+INSERT INTO Produit(prix,stock,libelle) VALUES(3.10, 30,  'Brioche');
 
-INSERT INTO Produit(prix,stock,libelle) VALUES(0.80, 180, 'eau: cristalline');  
+INSERT INTO Produit(prix,stock,libelle) VALUES(0.80, 180, 'Eau : Cristalline');  
 
-INSERT INTO Produit(prix,stock,libelle) VALUES(0.30, 15, 'tartine de nutella');  
+INSERT INTO Produit(prix,stock,libelle) VALUES(0.30, 15, 'Tartine de nutella');  
 
-INSERT INTO Produit(prix,stock,libelle) VALUES(0.50, 0, 'orange');
+INSERT INTO Produit(prix,stock,libelle) VALUES(0.50, 0, 'Orange');
 
 ######################### INSERTIONS DANS LA TABLE EST_COMPOSE_DE #########################
 
