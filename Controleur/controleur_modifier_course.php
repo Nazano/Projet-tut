@@ -14,8 +14,7 @@
         $newQte = clean_input($_POST['quantite']);
     }
     $id = $course->getIdAchat();
-    echo "UPDATE achat SET qteAchete='$newQte',dateAchat='$newDate',prix='$newPrix',idParent='$newPar',idProduit='$newProd' WHERE idAchat='$id'";
-    
-    $result = mysqli_query($co,"UPDATE achat SET qteAchete='$newQte',dateAchat='$newDate',prix='$newPrix',idParent='$newPar',idProduit='$newProd' WHERE idAchat='$id'") or die("echec de la maj du produit");
+    echo "UPDATE achat SET qteAchete='$newQte',dateAchat='$newDate',prix='$newPrix',idParent='$newPar',idProduit='$newProd' WHERE idAchat='$id'" . "<br/>";
+    $result = mysqli_query($co,"UPDATE achat SET qteAchete='$newQte',dateAchat='$newDate',prix='$newPrix',idParent='$newPar',idProduit='$newProd' WHERE idAchat='$id'") or die("echec de la maj de la course (faire attention à bien remplir chaque champs ! ");
     header('Location: ../vue/courses.php');
 ?>
